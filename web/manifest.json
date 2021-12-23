@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Proyecto que recoje el desarrollo de la parte front (realizada en flutter web) del proyecto Alquipet",
+    "description": "Proyecto que recoge el desarrollo de la parte front (realizada en flutter web) del proyecto Alquipet",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
