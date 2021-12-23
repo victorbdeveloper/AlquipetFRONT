@@ -1,6 +1,6 @@
 # alquipet_front
 
-Proyecto que recoje el desarrollo de la parte front (realizada en flutter web) del proyecto Alquipet
+Proyecto que recoge el desarrollo de la parte front (realizada en flutter web) del proyecto Alquipet
 
 ## Getting Started
 
