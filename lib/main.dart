@@ -1,32 +1,34 @@
+import 'package:alquipet_front/providers/auth_provider.dart';
+import 'package:alquipet_front/providers/home_provider.dart';
+import 'package:alquipet_front/providers/listing_provider.dart';
+import 'package:alquipet_front/providers/login_provider.dart';
+import 'package:alquipet_front/providers/user_profile_provider.dart';
 import 'package:alquipet_front/services/local_storage.dart';
-import 'package:alquipet_front/services/navigation_service.dart';
 import 'package:alquipet_front/services/notifications_service.dart';
+import 'package:alquipet_front/ui/pages/create_listing_page.dart';
+import 'package:alquipet_front/ui/pages/favorited_listings_page.dart';
+import 'package:alquipet_front/ui/pages/home_page.dart';
+import 'package:alquipet_front/ui/pages/listing_page.dart';
+import 'package:alquipet_front/ui/pages/listings_user_page.dart';
+import 'package:alquipet_front/ui/pages/login_page.dart';
+import 'package:alquipet_front/ui/pages/not_found_page.dart';
+import 'package:alquipet_front/ui/pages/user_register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 Future<void> main() async {
+  ///Eliminar # de las rutas
+  setPathUrlStrategy();
+
+  ///Cargar localStorage / SharedPreferences
   await LocalStorage.configurePrefs();
+
+  ///Inicializar configuración de DIO para las peticiones http
   //TODO: DIO
-  //TODO: router
-  runApp(const AppState());
-}
 
-class AppState extends StatelessWidget {
-  const AppState({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MyApp(); //TODO: eliminar esta línea cuando se implemente GET
-    // return MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider(lazy: false, create: (_) => AuthProvider()),
-    //     ChangeNotifierProvider(lazy: false, create: (_) => SideMenuProvider()),
-    //     ChangeNotifierProvider(create: (_) => CategoriesProvider()),
-    //     ChangeNotifierProvider(create: (_) => UsersProvider()),
-    //     ChangeNotifierProvider(create: (_) => UserFormProvider()),
-    //   ],
-    //   child: const MyApp(),
-    // );
-  }
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,27 +36,67 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    ///PROVIDERS
+    Get.put(AuthProvider());
+    Get.put(HomeProvider());
+    Get.put(ListingProvider());
+    Get.put(LoginProvider());
+    Get.put(UserProfileProvider());
+
+    return GetMaterialApp(
       title: 'Alquipet',
-      home: const Home(),
-      //TODO: BORRAR DESPUES!
-      initialRoute: '/',
-      // onGenerateRoute: Flurorouter.router.generator,
-      navigatorKey: NavigationService.navigatorKey,
+
+      ///ROUTES
+      unknownRoute: GetPage(
+        name: '/not_found',
+        page: () => const NotFoundPage(),
+        transition: Transition.noTransition,
+      ),
+      initialRoute: '/inicio',
+      getPages: [
+        GetPage(
+          name: '/crear_anuncio',
+          page: () => const CreateListingPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/anuncios_favoritos',
+          page: () => const FavoritedListingsPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/inicio',
+          page: () => const HomePage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/anuncio',
+          page: () => const ListingPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/mis_anuncios',
+          page: () => const ListingsUserPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/login',
+          page: () => const LoginPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/usuario',
+          page: () => const UserRegisterPage(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: '/registrar_usuario',
+          page: () => const UserRegisterPage(),
+          transition: Transition.noTransition,
+        ),
+      ],
+
       scaffoldMessengerKey: NotificationsService.messengerKey,
-      // builder: (_, child) {
-      //   final authProvider = Provider.of<AuthProvider>(context);
-      //
-      //   if (authProvider.authStatus == AuthStatus.checking) {
-      //     return SplashLayout();
-      //   }
-      //
-      //   if (authProvider.authStatus == AuthStatus.authenticated) {
-      //     return DashboardLayout(child: child!);
-      //   } else {
-      //     return AuthLayout(child: child!);
-      //   }
-      // },
       theme: ThemeData.light().copyWith(
         scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(
@@ -66,15 +108,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("HOLA MUNDO!"),
-      ),
-    );
-  }
-}
+// class Home extends StatelessWidget {
+//   const Home({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: CustomOutlinedButton(
+//             onPressed: () {
+//               print("a");
+//               Get.toNamed("/second", parameters: {"a": "1", "b": "2"});
+//             },
+//             text: 'IR A PG 2'),
+//       ),
+//     );
+//   }
+// }
+//
+// class Second extends StatelessWidget {
+//   const Second({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: CustomOutlinedButton(
+//             onPressed: () {
+//               print("a");
+//             },
+//             text: 'IR A HOME'),
+//       ),
+//     );
+//   }
+// }
