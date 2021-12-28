@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//TODO: ELIMINAR AL ACABAR SI NO HAN HECHO FALTA!!
 class CustomInputs {
   static InputDecoration loginInputDecoration({
     required String hint,
