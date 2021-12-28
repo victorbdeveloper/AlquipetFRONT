@@ -1,3 +1,4 @@
+import 'package:alquipet_front/api/alquipet_api.dart';
 import 'package:alquipet_front/providers/auth_provider.dart';
 import 'package:alquipet_front/providers/home_provider.dart';
 import 'package:alquipet_front/providers/listing_provider.dart';
@@ -13,6 +14,7 @@ import 'package:alquipet_front/ui/pages/listings_user_page.dart';
 import 'package:alquipet_front/ui/pages/login_page.dart';
 import 'package:alquipet_front/ui/pages/not_found_page.dart';
 import 'package:alquipet_front/ui/pages/user_register_page.dart';
+import 'package:alquipet_front/ui/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -26,7 +28,7 @@ Future<void> main() async {
   await LocalStorage.configurePrefs();
 
   ///Inicializar configuración de DIO para las peticiones http
-  //TODO: DIO
+  AlquipetApi.configureDio();
 
   runApp(const MyApp());
 }
@@ -44,7 +46,14 @@ class MyApp extends StatelessWidget {
     Get.put(UserProfileProvider());
 
     return GetMaterialApp(
+      ///TÍTULO
       title: 'Alquipet',
+
+      //TODO: PROBAR A QUITAR ESTA LINEA Y A SUSTITUIR EL SERVICE POR WIDGET CREADOS CON GETX
+      scaffoldMessengerKey: NotificationsService.messengerKey,
+
+      /// THEME
+      theme: myLightTheme,
 
       ///ROUTES
       unknownRoute: GetPage(
@@ -95,15 +104,6 @@ class MyApp extends StatelessWidget {
           transition: Transition.noTransition,
         ),
       ],
-
-      scaffoldMessengerKey: NotificationsService.messengerKey,
-      theme: ThemeData.light().copyWith(
-        scrollbarTheme: const ScrollbarThemeData().copyWith(
-          thumbColor: MaterialStateProperty.all(
-            Colors.grey.withOpacity(0.5),
-          ),
-        ),
-      ),
     );
   }
 }

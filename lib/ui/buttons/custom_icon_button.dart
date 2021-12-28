@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//TODO: ELIMINAR AL ACABAR SI NO HAN HECHO FALTA!!
 class CustomIconButton extends StatelessWidget {
   final Function onPressed;
   final String text;
