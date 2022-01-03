@@ -1,3 +1,4 @@
+import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
 import 'package:flutter/material.dart';
 
 class UserPage extends StatelessWidget {
@@ -5,8 +6,8 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("UserPage"),
+    return DashboardLayout(
+      child: Text("USER PAGE"),
     );
   }
 }

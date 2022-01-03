@@ -2,6 +2,7 @@ import 'package:alquipet_front/api/alquipet_api.dart';
 import 'package:alquipet_front/providers/home_provider.dart';
 import 'package:alquipet_front/providers/listing_provider.dart';
 import 'package:alquipet_front/providers/auth_provider.dart';
+import 'package:alquipet_front/providers/side_menu_provider.dart';
 import 'package:alquipet_front/routes/routes.dart';
 import 'package:alquipet_front/services/local_storage.dart';
 import 'package:alquipet_front/services/notifications_service.dart';
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///PROVIDERS
+    Get.put(AuthProvider());
     Get.put(HomeProvider());
     Get.put(ListingProvider());
-    Get.put(AuthProvider());
+    Get.put(SideMenuProvider());
 
     return GetMaterialApp(
       ///TÍTULO

@@ -12,4 +12,5 @@ class AuthMiddleware extends GetMiddleware {
         ? null
         : const RouteSettings(name: '/inicio');
   }
+
 }

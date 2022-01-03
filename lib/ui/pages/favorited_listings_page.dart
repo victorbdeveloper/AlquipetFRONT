@@ -1,3 +1,4 @@
+import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
 import 'package:flutter/material.dart';
 
 class FavoritedListingsPage extends StatelessWidget {
@@ -5,8 +6,8 @@ class FavoritedListingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("FavoritedListingsPage"),
+    return DashboardLayout(
+      child: Text("FAVORITED LISTINGS"),
     );
   }
 }
