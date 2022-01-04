@@ -1,6 +1,7 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
 import 'package:alquipet_front/models/http/auth_response.dart';
 import 'package:alquipet_front/models/user.dart';
+import 'package:alquipet_front/providers/side_menu_provider.dart';
 import 'package:alquipet_front/services/local_storage.dart';
 import 'package:alquipet_front/services/notifications_service.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,8 @@ class AuthProvider extends GetxController {
       AlquipetApi.configureDio();
 
       ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      // setState(() {});
+      final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
+      sideMenuProvider.update();
 
       ///MUESTRA MENSAJE Y REDIRIGE A INICIO
       NotificationsService.showSnackBar('Login correcto. Bienvenido!');
@@ -136,7 +138,8 @@ class AuthProvider extends GetxController {
       AlquipetApi.configureDio();
 
       ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      // setState(() {});
+      final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
+      sideMenuProvider.update();
 
       ///MUESTRA MENSAJE Y REDIRIGE A INICIO
       NotificationsService.showSnackBar('Login correcto. Bienvenido!');
@@ -164,9 +167,23 @@ class AuthProvider extends GetxController {
         debugPrint(error.toString());
       }
     }
+
+    ///ELIMINA EL TOKEN DEL LOCAL STORAGE
     LocalStorage.prefs.remove('token');
+
+    ///ACTUALIZA LAS VARIABLES
     authStatus = AuthStatus.notAuthenticated;
-    // notifyListeners();
+    authType = AuthType.notYet;
+
+    ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
+    final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
+    sideMenuProvider.update();
+    update();
+
+    ///MUESTRA MENSAJE
     NotificationsService.showSnackBarLogout('Sesión cerrada con éxito');
+
+    ///REDIRIGE A INICIO Y BORRA EL HISTORIAL DE RUTAS
+    Get.offAllNamed("/inicio");
   }
 }

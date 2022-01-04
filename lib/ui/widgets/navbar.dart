@@ -22,6 +22,7 @@ class Navbar extends StatelessWidget {
                 IconButton(
                     icon: const Icon(Icons.menu_outlined),
                     iconSize: 25,
+                    color: const Color(0xff092044),
                     onPressed: () {
                       SideMenuProvider.openMenu();
                       controller.update();
@@ -30,6 +31,9 @@ class Navbar extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "ALQUIPET",
+                    style: TextStyle(
+                      color: Color(0xff092044),
+                    ),
                   ),
                 ),
               ),
@@ -45,7 +49,7 @@ class Navbar extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() => const BoxDecoration(
-        color: Colors.white,
+        color: Colors.blue,
         boxShadow: <BoxShadow>[
           BoxShadow(color: Colors.black12, blurRadius: 5),
         ],
