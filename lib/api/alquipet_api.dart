@@ -5,6 +5,7 @@ class AlquipetApi {
   static final Dio _dio = Dio();
 
   static void configureDio() {
+    //TODO: CAMBIAR AL DESPLEGAR A PRODUCCIÓN
     /// BASE URL
     /// desarrollo - local
     _dio.options.baseUrl = 'http://localhost:8081/api';

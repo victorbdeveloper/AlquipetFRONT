@@ -1,6 +1,5 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
 import 'package:alquipet_front/models/http/auth_response.dart';
-import 'package:alquipet_front/models/user.dart';
 import 'package:alquipet_front/providers/side_menu_provider.dart';
 import 'package:alquipet_front/services/local_storage.dart';
 import 'package:alquipet_front/services/notifications_service.dart';

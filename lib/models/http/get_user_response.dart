@@ -1,31 +1,31 @@
+// To parse this JSON data, do
+//
+//     final getUserResponse = getUserResponseFromMap(jsonString);
+
 import 'dart:convert';
 
-class AuthResponse {
-  AuthResponse({
+class GetUserResponse {
+  GetUserResponse({
     required this.msg,
     required this.user,
-    required this.token,
   });
 
   String msg;
   User user;
-  String token;
 
-  factory AuthResponse.fromJson(String str) =>
-      AuthResponse.fromMap(json.decode(str));
+  factory GetUserResponse.fromJson(String str) =>
+      GetUserResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory AuthResponse.fromMap(Map<String, dynamic> json) => AuthResponse(
+  factory GetUserResponse.fromMap(Map<String, dynamic> json) => GetUserResponse(
         msg: json["msg"],
         user: User.fromMap(json["user"]),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => {
         "msg": msg,
         "user": user.toMap(),
-        "token": token,
       };
 }
 
@@ -49,7 +49,7 @@ class User {
   String phone;
   bool google;
   bool state;
-  List<String> favoriteListings;
+  List<dynamic> favoriteListings;
   String uid;
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -65,7 +65,7 @@ class User {
         google: json["google"],
         state: json["state"],
         favoriteListings:
-            List<String>.from(json["favorite_listings"].map((x) => x)),
+            List<dynamic>.from(json["favorite_listings"].map((x) => x)),
         uid: json["uid"],
       );
 

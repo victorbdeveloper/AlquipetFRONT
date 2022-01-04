@@ -48,8 +48,7 @@ class Sidebar extends StatelessWidget {
                   text: 'Inicio',
                   onPressed: () {
                     if (sideMenuProvider.currentPage != "/inicio") {
-                    Get.toNamed("/inicio");
-                    // sideMenuProvider.setCurrentPageUrl("/inicio");
+                      Get.toNamed("/inicio");
                     }
                   },
                   isActive: sideMenuProvider.currentPage == "/inicio",
@@ -59,7 +58,6 @@ class Sidebar extends StatelessWidget {
                   onPressed: () {
                     if (sideMenuProvider.currentPage != "/anuncio") {
                       Get.toNamed("/anuncio");
-                      // sideMenuProvider.setCurrentPageUrl("/inicio");
                     }
                   },
                   isActive: sideMenuProvider.currentPage == "/anuncio",
@@ -74,7 +72,6 @@ class Sidebar extends StatelessWidget {
                         onPressed: () {
                           if (sideMenuProvider.currentPage != "/usuario") {
                             Get.toNamed("/usuario");
-                            // sideMenuProvider.setCurrentPageUrl("/usuario");
                           }
                         },
                         isActive: sideMenuProvider.currentPage == "/usuario",
@@ -88,7 +85,6 @@ class Sidebar extends StatelessWidget {
                           if (sideMenuProvider.currentPage !=
                               "/crear_anuncio") {
                             Get.toNamed("/crear_anuncio");
-                            // sideMenuProvider.setCurrentPageUrl("/crear_anuncio");
                           }
                         },
                         isActive:
@@ -99,7 +95,6 @@ class Sidebar extends StatelessWidget {
                         onPressed: () {
                           if (sideMenuProvider.currentPage != "/mis_anuncios") {
                             Get.toNamed("/mis_anuncios");
-                            // sideMenuProvider.setCurrentPageUrl("/mis_anuncios");
                           }
                         },
                         isActive:
@@ -111,7 +106,6 @@ class Sidebar extends StatelessWidget {
                           if (sideMenuProvider.currentPage !=
                               "/anuncios_favoritos") {
                             Get.toNamed("/anuncios_favoritos");
-                            // sideMenuProvider.setCurrentPageUrl("/anuncios_favoritos");
                           }
                         },
                         isActive: sideMenuProvider.currentPage ==
