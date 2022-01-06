@@ -39,7 +39,7 @@ class AuthProvider extends GetxController {
   //
   //     return true;
   //   } catch (e) {
-  //     debugPrint(e.toString());
+  //     print(e.toString());
   //     authStatus = AuthStatus.notAuthenticated;
   //     authType = AuthType.notYet;
   //     // notifyListeners();
@@ -55,12 +55,12 @@ class AuthProvider extends GetxController {
         await AlquipetApi.dioPost('/users/create_user', body: data),
       );
 
-      debugPrint("AUTHRESPONSE cU: ${authResponse.toString()}");
+      print("AUTHRESPONSE cU: ${authResponse.toString()}");
       Get.toNamed("/login");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
+      print(error.toString());
       NotificationsService.showSnackBarError('Email / Nick no válidos');
       Get.toNamed("/login");
     }
@@ -68,14 +68,14 @@ class AuthProvider extends GetxController {
 
   /// LOGIN EMAIL
   Future<void> loginEmail(Map<String, String> data) async {
-    debugPrint("DATA: ${data.toString()}");
+    print("DATA: ${data.toString()}");
 
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost('/auth/login_email', body: data),
       );
-      debugPrint("AUTHRESPONSE lE: ${authResponse.toString()}");
+      print("AUTHRESPONSE lE: ${authResponse.toString()}");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -98,7 +98,7 @@ class AuthProvider extends GetxController {
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
+      print(error.toString());
       NotificationsService.showSnackBarError('Email / Contraseña no válidos');
       Get.toNamed("/login");
     }
@@ -109,21 +109,21 @@ class AuthProvider extends GetxController {
     try {
       ///INTENTA INICIAR SESIÓN CON GOOGLE SOLO SI NO ESTA INICIADA YA LA SESIÓN
       _googleSignInAccount = await _googleSignIn.signIn();
-      debugPrint("CURRENT USER: ${_googleSignIn.currentUser}");
+      print("CURRENT USER: ${_googleSignIn.currentUser}");
 
       ///OBTIENE LA AUTENTICACIÓN DEL USUARIO
       GoogleSignInAuthentication _googleSignInAuthentication =
           await _googleSignInAccount!.authentication;
 
       //TODO: ESTE ID ES EL QUE HAY QUE PASAR AL SERVICIO REST
-      debugPrint("ID: ${_googleSignInAuthentication.idToken}");
+      print("ID: ${_googleSignInAuthentication.idToken}");
 
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost('/auth/login_google',
             body: {"id_token": _googleSignInAuthentication.idToken}),
       );
-      debugPrint("AUTHRESPONSE hSI: $authResponse");
+      print("AUTHRESPONSE hSI: $authResponse");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -146,7 +146,7 @@ class AuthProvider extends GetxController {
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
+      print(error.toString());
       NotificationsService.showSnackBarError(
           'Error al iniciar sesión con Google');
       Get.toNamed("/login");
@@ -161,9 +161,9 @@ class AuthProvider extends GetxController {
       try {
         ///CIERRA LA SESIÓN DE GOOGLE DEL USUARIO
         _googleSignInAccount = await _googleSignIn.disconnect();
-        debugPrint("CURRENT USER ${_googleSignIn.currentUser}");
+        print("CURRENT USER ${_googleSignIn.currentUser}");
       } catch (error) {
-        debugPrint(error.toString());
+        print(error.toString());
       }
     }
 

@@ -1,7 +1,11 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
+import 'package:alquipet_front/models/http/get_filtered_listings_paginated_response.dart';
 import 'package:get/get.dart';
 
 class HomeProvider extends GetxController {
+  late GetFilteredListingsPaginatedResponse
+      getFilteredListingsPaginatedResponse;
+
 //TODO: INCLUIR LA CARGA INICIAL DE LOS DATOS DE LA PG, OBTENER ANUNCIOS TOTALES Y FILTRADOS
   dynamic testPeticion() async {
     ///DEFINIR QUERYPARAMS
@@ -19,11 +23,15 @@ class HomeProvider extends GetxController {
       ///EJEMPLO PETICIÓN POST
       // var response = await AlquipetApi.dioPost('/listings/get_filtered_listing_paginated',
       //     queryParams: queryParameters, body: data);
-      var response = await AlquipetApi.dioGet(
+      final response = await AlquipetApi.dioGet(
         '/listings/get_filtered_listing_paginated',
       );
-      print(response);
-      return response;
+
+       getFilteredListingsPaginatedResponse =
+          GetFilteredListingsPaginatedResponse.fromMap(response);
+
+      print(getFilteredListingsPaginatedResponse.results.first.petsAllowed);
+      return getFilteredListingsPaginatedResponse;
     } catch (e) {
       print("Error: $e");
     }

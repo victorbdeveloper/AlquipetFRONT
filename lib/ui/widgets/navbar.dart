@@ -27,13 +27,30 @@ class Navbar extends StatelessWidget {
                       SideMenuProvider.openMenu();
                       controller.update();
                     }),
-              const Expanded(
+              Expanded(
                 child: Center(
-                  child: Text(
-                    "ALQUIPET",
-                    style: TextStyle(
-                      color: Color(0xff092044),
-                    ),
+                  child: Stack(
+                    children: <Widget>[
+                      // Stroked text as border.
+                      Text(
+                        'ALQUIPET',
+                        style: TextStyle(
+                          fontSize: 40,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 6
+                            ..color = Colors.blue[700]!,
+                        ),
+                      ),
+                      // Solid text as fill.
+                      Text(
+                        'ALQUIPET',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.grey[300],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

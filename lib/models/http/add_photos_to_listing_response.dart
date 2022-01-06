@@ -28,6 +28,11 @@ class AddPhotosToListingResponse {
         "msg": msg,
         "listing": listing.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'AddPhotosToListingResponse{msg: $msg, listing: $listing}';
+  }
 }
 
 class Listing {
@@ -76,6 +81,11 @@ class Listing {
         "date_publication": datePublication.toIso8601String(),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'Listing{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, datePublication: $datePublication, uid: $uid}';
+  }
 }
 
 class Address {
@@ -132,6 +142,11 @@ class Address {
         "latitude": latitude,
         "longitude": longitude,
       };
+
+  @override
+  String toString() {
+    return 'Address{id: $id, province: $province, municipality: $municipality, postalCode: $postalCode, street: $street, number: $number, flour: $flour, letter: $letter, latitude: $latitude, longitude: $longitude}';
+  }
 }
 
 class CreatedBy {
@@ -172,17 +187,22 @@ class CreatedBy {
         "email": email,
         "phone": phone,
       };
+
+  @override
+  String toString() {
+    return 'CreatedBy{id: $id, userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone}';
+  }
 }
 
 class PetsAllowed {
-  PetsAllowed({
-    required this.id,
-    required this.dogs,
-    required this.cats,
-    required this.birds,
-    required this.rodents,
-    required this.exotic,
-  });
+  PetsAllowed(
+      {required this.id,
+      required this.dogs,
+      required this.cats,
+      required this.birds,
+      required this.rodents,
+      required this.exotic,
+      required this.others});
 
   String id;
   bool dogs;
@@ -190,6 +210,7 @@ class PetsAllowed {
   bool birds;
   bool rodents;
   bool exotic;
+  String others;
 
   factory PetsAllowed.fromJson(String str) =>
       PetsAllowed.fromMap(json.decode(str));
@@ -203,6 +224,7 @@ class PetsAllowed {
         birds: json["birds"],
         rodents: json["rodents"],
         exotic: json["exotic"],
+        others: json["others"] ?? "",
       );
 
   Map<String, dynamic> toMap() => {
@@ -212,7 +234,13 @@ class PetsAllowed {
         "birds": birds,
         "rodents": rodents,
         "exotic": exotic,
+        "others": others
       };
+
+  @override
+  String toString() {
+    return 'PetsAllowed{id: $id, dogs: $dogs, cats: $cats, birds: $birds, rodents: $rodents, exotic: $exotic, others: $others}';
+  }
 }
 
 class Photo {

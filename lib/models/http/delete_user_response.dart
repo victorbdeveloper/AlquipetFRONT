@@ -28,6 +28,11 @@ class DeleteUserResponse {
         "msg": msg,
         "user": user.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'DeleteUserResponse{msg: $msg, user: $user}';
+  }
 }
 
 class User {
@@ -81,4 +86,9 @@ class User {
         "favorite_listings": List<dynamic>.from(favoriteListings.map((x) => x)),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'User{userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone, google: $google, state: $state, favoriteListings: $favoriteListings, uid: $uid}';
+  }
 }

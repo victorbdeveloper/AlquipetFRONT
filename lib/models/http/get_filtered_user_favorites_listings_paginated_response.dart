@@ -8,15 +8,15 @@ class GetFilteredUserFavoritesListingsPaginatedResponse {
   GetFilteredUserFavoritesListingsPaginatedResponse({
     required this.totalAnunciosEncontradosAplicandoLosFiltros,
     required this.anunciosMostrados,
-    required this.ndiceDelPrimerAnuncioMostrado,
-    required this.ndiceDelLtimoAnuncioMostrado,
+    required this.indiceDelPrimerAnuncioMostrado,
+    required this.indiceDelUltimoAnuncioMostrado,
     required this.results,
   });
 
   int totalAnunciosEncontradosAplicandoLosFiltros;
   int anunciosMostrados;
-  int ndiceDelPrimerAnuncioMostrado;
-  int ndiceDelLtimoAnuncioMostrado;
+  int indiceDelPrimerAnuncioMostrado;
+  int indiceDelUltimoAnuncioMostrado;
   List<Result> results;
 
   factory GetFilteredUserFavoritesListingsPaginatedResponse.fromJson(
@@ -32,9 +32,9 @@ class GetFilteredUserFavoritesListingsPaginatedResponse {
         totalAnunciosEncontradosAplicandoLosFiltros:
             json["Total anuncios encontrados aplicando los filtros:"],
         anunciosMostrados: json["Anuncios mostrados: "],
-        ndiceDelPrimerAnuncioMostrado:
+        indiceDelPrimerAnuncioMostrado:
             json["Índice del primer anuncio mostrado: "],
-        ndiceDelLtimoAnuncioMostrado:
+        indiceDelUltimoAnuncioMostrado:
             json["Índice del último anuncio mostrado: "],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
@@ -44,10 +44,15 @@ class GetFilteredUserFavoritesListingsPaginatedResponse {
         "Total anuncios encontrados aplicando los filtros:":
             totalAnunciosEncontradosAplicandoLosFiltros,
         "Anuncios mostrados: ": anunciosMostrados,
-        "Índice del primer anuncio mostrado: ": ndiceDelPrimerAnuncioMostrado,
-        "Índice del último anuncio mostrado: ": ndiceDelLtimoAnuncioMostrado,
+        "Índice del primer anuncio mostrado: ": indiceDelPrimerAnuncioMostrado,
+        "Índice del último anuncio mostrado: ": indiceDelUltimoAnuncioMostrado,
         "results": List<dynamic>.from(results.map((x) => x.toMap())),
       };
+
+  @override
+  String toString() {
+    return 'GetFilteredUserFavoritesListingsPaginatedResponse{totalAnunciosEncontradosAplicandoLosFiltros: $totalAnunciosEncontradosAplicandoLosFiltros, anunciosMostrados: $anunciosMostrados, indiceDelPrimerAnuncioMostrado: $indiceDelPrimerAnuncioMostrado, indiceDelUltimoAnuncioMostrado: $indiceDelUltimoAnuncioMostrado, results: $results}';
+  }
 }
 
 class Result {
@@ -96,6 +101,11 @@ class Result {
         "date_publication": datePublication.toIso8601String(),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'Result{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, datePublication: $datePublication, uid: $uid}';
+  }
 }
 
 class Address {
@@ -152,6 +162,11 @@ class Address {
         "latitude": latitude,
         "longitude": longitude,
       };
+
+  @override
+  String toString() {
+    return 'Address{id: $id, province: $province, municipality: $municipality, postalCode: $postalCode, street: $street, number: $number, flour: $flour, letter: $letter, latitude: $latitude, longitude: $longitude}';
+  }
 }
 
 class CreatedBy {
@@ -192,17 +207,22 @@ class CreatedBy {
         "email": email,
         "phone": phone,
       };
+
+  @override
+  String toString() {
+    return 'CreatedBy{id: $id, userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone}';
+  }
 }
 
 class PetsAllowed {
-  PetsAllowed({
-    required this.id,
-    required this.dogs,
-    required this.cats,
-    required this.birds,
-    required this.rodents,
-    required this.exotic,
-  });
+  PetsAllowed(
+      {required this.id,
+      required this.dogs,
+      required this.cats,
+      required this.birds,
+      required this.rodents,
+      required this.exotic,
+      required this.others});
 
   String id;
   bool dogs;
@@ -210,6 +230,7 @@ class PetsAllowed {
   bool birds;
   bool rodents;
   bool exotic;
+  String others;
 
   factory PetsAllowed.fromJson(String str) =>
       PetsAllowed.fromMap(json.decode(str));
@@ -223,6 +244,7 @@ class PetsAllowed {
         birds: json["birds"],
         rodents: json["rodents"],
         exotic: json["exotic"],
+        others: json["others"] ?? "",
       );
 
   Map<String, dynamic> toMap() => {
@@ -232,7 +254,13 @@ class PetsAllowed {
         "birds": birds,
         "rodents": rodents,
         "exotic": exotic,
+        "others": others
       };
+
+  @override
+  String toString() {
+    return 'PetsAllowed{id: $id, dogs: $dogs, cats: $cats, birds: $birds, rodents: $rodents, exotic: $exotic, others: $others}';
+  }
 }
 
 class Photo {
@@ -265,4 +293,9 @@ class Photo {
         "public_id_cloudinary": publicIdCloudinary,
         "url_cloudinary": urlCloudinary,
       };
+
+  @override
+  String toString() {
+    return 'Photo{id: $id, fileName: $fileName, publicIdCloudinary: $publicIdCloudinary, urlCloudinary: $urlCloudinary}';
+  }
 }

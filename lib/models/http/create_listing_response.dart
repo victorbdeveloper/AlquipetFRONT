@@ -24,10 +24,16 @@ class CreateListingResponse {
         listing: Listing.fromMap(json["listing"]),
       );
 
+
   Map<String, dynamic> toMap() => {
         "msg": msg,
         "listing": listing.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'CreateListingResponse{msg: $msg, listing: $listing}';
+  }
 }
 
 class Listing {
@@ -76,4 +82,9 @@ class Listing {
         "date_publication": datePublication.toIso8601String(),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'Listing{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, datePublication: $datePublication, uid: $uid}';
+  }
 }

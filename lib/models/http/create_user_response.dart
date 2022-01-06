@@ -28,6 +28,11 @@ class CreateUserResponse {
         "msg": msg,
         "user": user.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'CreateUserResponse{msg: $msg, user: $user}';
+  }
 }
 
 class User {
@@ -60,4 +65,9 @@ class User {
         "last_name": lastName,
         "email": email,
       };
+
+  @override
+  String toString() {
+    return 'User{userName: $userName, name: $name, lastName: $lastName, email: $email}';
+  }
 }

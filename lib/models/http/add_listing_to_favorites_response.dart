@@ -28,6 +28,11 @@ class AddListingToFavoritesResponse {
         "msg": msg,
         "user": user.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'AddListingToFavoritesResponse{msg: $msg, user: $user}';
+  }
 }
 
 class User {
@@ -82,6 +87,11 @@ class User {
             List<dynamic>.from(favoriteListings.map((x) => x.toMap())),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'User{userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone, google: $google, state: $state, favoriteListings: $favoriteListings, uid: $uid}';
+  }
 }
 
 class FavoriteListing {
@@ -122,7 +132,7 @@ class FavoriteListing {
         petsAllowed: PetsAllowed.fromMap(json["pets_allowed"]),
         photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
         price: json["price"],
-        description: json["description"] == null ? null : json["description"],
+        description: json["description"] ?? "",
         datePublication: DateTime.parse(json["date_publication"]),
         v: json["__v"],
       );
@@ -135,10 +145,15 @@ class FavoriteListing {
         "pets_allowed": petsAllowed.toMap(),
         "photos": List<dynamic>.from(photos.map((x) => x.toMap())),
         "price": price,
-        "description": description == null ? null : description,
+        "description": description,
         "date_publication": datePublication.toIso8601String(),
         "__v": v,
       };
+
+  @override
+  String toString() {
+    return 'FavoriteListing{id: $id, createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, description: $description, datePublication: $datePublication, v: $v}';
+  }
 }
 
 class Address {
@@ -199,6 +214,11 @@ class Address {
         "longitude": longitude,
         "__v": v,
       };
+
+  @override
+  String toString() {
+    return 'Address{id: $id, province: $province, municipality: $municipality, postalCode: $postalCode, street: $street, number: $number, flour: $flour, letter: $letter, latitude: $latitude, longitude: $longitude, v: $v}';
+  }
 }
 
 class PetsAllowed {
@@ -234,7 +254,7 @@ class PetsAllowed {
         birds: json["birds"],
         rodents: json["rodents"],
         exotic: json["exotic"],
-        others: json["others"] == null ? null : json["others"],
+        others: json["others"] ?? "",
         v: json["__v"],
       );
 
@@ -245,9 +265,14 @@ class PetsAllowed {
         "birds": birds,
         "rodents": rodents,
         "exotic": exotic,
-        "others": others == null ? null : others,
+        "others": others,
         "__v": v,
       };
+
+  @override
+  String toString() {
+    return 'PetsAllowed{id: $id, dogs: $dogs, cats: $cats, birds: $birds, rodents: $rodents, exotic: $exotic, others: $others, v: $v}';
+  }
 }
 
 class Photo {
@@ -284,4 +309,9 @@ class Photo {
         "url_cloudinary": urlCloudinary,
         "__v": v,
       };
+
+  @override
+  String toString() {
+    return 'Photo{id: $id, fileName: $fileName, publicIdCloudinary: $publicIdCloudinary, urlCloudinary: $urlCloudinary, v: $v}';
+  }
 }

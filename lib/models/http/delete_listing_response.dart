@@ -28,6 +28,11 @@ class DeleteListingResponse {
         "msg": msg,
         "listing": listing.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'DeleteListingResponse{msg: $msg, listing: $listing}';
+  }
 }
 
 class Listing {
@@ -80,4 +85,9 @@ class Listing {
         "date_publication": datePublication.toIso8601String(),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'Listing{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, description: $description, datePublication: $datePublication, uid: $uid}';
+  }
 }

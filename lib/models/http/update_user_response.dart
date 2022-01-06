@@ -24,10 +24,16 @@ class UpdateUserResponse {
         user: User.fromMap(json["user"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "msg": msg,
         "user": user.toMap(),
       };
+
+  @override
+  String toString() {
+    return 'UpdateUserResponse{msg: $msg, user: $user}';
+  }
 }
 
 class User {
@@ -57,7 +63,8 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromMap(Map<String, dynamic> json) => User(
+  factory User.fromMap(Map<String, dynamic> json) =>
+      User(
         userName: json["user_name"],
         name: json["name"],
         lastName: json["last_name"],
@@ -66,11 +73,12 @@ class User {
         google: json["google"],
         state: json["state"],
         favoriteListings:
-            List<dynamic>.from(json["favorite_listings"].map((x) => x)),
+        List<dynamic>.from(json["favorite_listings"].map((x) => x)),
         uid: json["uid"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "user_name": userName,
         "name": name,
         "last_name": lastName,
@@ -81,4 +89,9 @@ class User {
         "favorite_listings": List<dynamic>.from(favoriteListings.map((x) => x)),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'User{userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone, google: $google, state: $state, favoriteListings: $favoriteListings, uid: $uid}';
+  }
 }

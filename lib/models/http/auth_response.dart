@@ -27,6 +27,11 @@ class AuthResponse {
         "user": user.toMap(),
         "token": token,
       };
+
+  @override
+  String toString() {
+    return 'AuthResponse{msg: $msg, user: $user, token: $token}';
+  }
 }
 
 class User {
@@ -80,4 +85,9 @@ class User {
         "favorite_listings": List<dynamic>.from(favoriteListings.map((x) => x)),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return 'User{userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone, google: $google, state: $state, favoriteListings: $favoriteListings, uid: $uid}';
+  }
 }
