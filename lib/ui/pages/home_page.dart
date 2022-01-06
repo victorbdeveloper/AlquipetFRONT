@@ -1,9 +1,11 @@
 import 'package:alquipet_front/providers/home_provider.dart';
 import 'package:alquipet_front/ui/buttons/custom_outlined_button.dart';
 import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_grid_list/responsive_grid_list.dart';
+
+import '../responsive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,11 +15,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeProvider homeProvider = Get.find<HomeProvider>();
+  late HomeProvider homeProvider;
 
   @override
   void initState() {
-    // homeProvider.testPeticion();
+    homeProvider = Get.find<HomeProvider>();
     super.initState();
   }
 
@@ -25,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return DashboardLayout(
       child: FutureBuilder<dynamic>(
-        future: homeProvider.testPeticion(),
+        future: homeProvider.getFilteredPaginatedListings(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         CustomOutlinedButton(
                           onPressed: () async {
-                            await homeProvider.testPeticion();
+                            await homeProvider.getFilteredPaginatedListings();
                             setState(() {});
                           },
                           text: "Volver a intentar",
@@ -68,7 +70,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (snapshot.hasData) {
-              return _HomePageContent(snapshot);
+              return ListView(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                children: const <Widget>[
+                  _HomePageContent(),
+                ],
+              );
             } else {
               return Center(
                 child: ListView(
@@ -106,8 +114,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _HomePageContent extends StatefulWidget {
-  const _HomePageContent(AsyncSnapshot<dynamic> snapshot, {Key? key})
-      : super(key: key);
+  const _HomePageContent({Key? key}) : super(key: key);
 
   @override
   __HomePageContentState createState() => __HomePageContentState();
@@ -115,12 +122,14 @@ class _HomePageContent extends StatefulWidget {
 
 class __HomePageContentState extends State<_HomePageContent>
     with SingleTickerProviderStateMixin {
+  late HomeProvider homeProvider;
   late AnimationController _animationController;
 
   @override
   void initState() {
-    super.initState();
+    homeProvider = Get.find<HomeProvider>();
     _animationController = AnimationController(vsync: this);
+    super.initState();
   }
 
   @override
@@ -131,20 +140,136 @@ class __HomePageContentState extends State<_HomePageContent>
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.green, child: Text("ASD"),);
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Responsive.isDesktop(context)
+          ? Column(
+              children: <Widget>[
+                ///TÍTULO
+                Text("ANUNCIOS"),
+
+                ///FILTROS
+                SizedBox(
+                  height: 30.0,
+                  width: Get.width,
+                  child: Container(
+                    color: Colors.green,
+                  ),
+                ),
+
+                ///LISTA CON ANUNCIOS
+                ListView.builder(
+                  padding: const EdgeInsets.all(20.0),
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: homeProvider
+                      .getFilteredListingsPaginatedResponse.results.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTapUp: (details) {
+                        Get.toNamed("/anuncio",
+                            parameters: {
+                              "id": homeProvider
+                                  .getFilteredListingsPaginatedResponse
+                                  .results[index]
+                                  .uid
+                            },
+                            arguments: homeProvider
+                                .getFilteredListingsPaginatedResponse
+                                .results[index]);
+                      },
+                      child: Hero(
+                        tag: homeProvider.getFilteredListingsPaginatedResponse
+                            .results[index].uid,
+                        child: Card(
+                          child: Text(homeProvider
+                              .getFilteredListingsPaginatedResponse
+                              .anunciosMostrados
+                              .toString()),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
+          : Responsive.isTablet(context)
+              ? ResponsiveGridList(
+                  shrinkWrap: true,
+                  horizontalGridMargin: 50,
+                  verticalGridMargin: 50,
+                  minItemWidth: 100,
+                  children: List.generate(
+                    homeProvider
+                        .getFilteredListingsPaginatedResponse.results.length,
+                    (index) => GestureDetector(
+                      onTapUp: (details) {
+                        Get.toNamed("/anuncio",
+                            parameters: {
+                              "id": homeProvider
+                                  .getFilteredListingsPaginatedResponse
+                                  .results[index]
+                                  .uid
+                            },
+                            arguments: homeProvider
+                                .getFilteredListingsPaginatedResponse
+                                .results[index]);
+                      },
+                      child: Hero(
+                        tag: homeProvider.getFilteredListingsPaginatedResponse
+                            .results[index].uid,
+                        child: Card(
+                          child: Text(homeProvider
+                              .getFilteredListingsPaginatedResponse
+                              .anunciosMostrados
+                              .toString()),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Responsive.isMobile(context)
+                  ? ResponsiveGridList(
+                      shrinkWrap: true,
+                      horizontalGridMargin: 50,
+                      verticalGridMargin: 50,
+                      minItemWidth: 200,
+                      children: List.generate(
+                        homeProvider.getFilteredListingsPaginatedResponse
+                            .results.length,
+                        (index) => GestureDetector(
+                          onTapUp: (details) {
+                            Get.toNamed("/anuncio",
+                                parameters: {
+                                  "id": homeProvider
+                                      .getFilteredListingsPaginatedResponse
+                                      .results[index]
+                                      .uid
+                                },
+                                arguments: homeProvider
+                                    .getFilteredListingsPaginatedResponse
+                                    .results[index]);
+                          },
+                          child: Hero(
+                            tag: homeProvider
+                                .getFilteredListingsPaginatedResponse
+                                .results[index]
+                                .uid,
+                            child: SizedBox(
+                              width: 300,
+                              height: 300,
+                              child: Card(
+                                child: Text(homeProvider
+                                    .getFilteredListingsPaginatedResponse
+                                    .anunciosMostrados
+                                    .toString()),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
+    );
   }
 }
-
-// Column(
-//   children: <Widget>[
-//     Center(
-//       child: CustomOutlinedButton(
-//           onPressed: () {
-//             print("BOTÓN PETICIÓN PULSADO");
-//             testPeticion();
-//             // Get.toNamed("/second", parameters: {"a": "1", "b": "2"});
-//           },
-//           text: 'PETICIÓN'),
-//     ),
-//   ],
-// ),

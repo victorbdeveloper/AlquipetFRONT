@@ -47,9 +47,8 @@ class _DashboardLayoutState extends State<DashboardLayout>
                       children: <Widget>[
                         const Navbar(),
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
-                            color: Colors.amber, //TODO: QUITAR AL ACABAR!!
                             child: widget.child,
                           ),
                         ),

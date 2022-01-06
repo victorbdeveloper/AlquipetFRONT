@@ -54,9 +54,9 @@ class Listing {
   PetsAllowed petsAllowed;
   List<Photo> photos;
   int price;
-  String description;
+  String description = "";
   DateTime datePublication;
-  String uid;
+  String uid = "";
 
   factory Listing.fromJson(String str) => Listing.fromMap(json.decode(str));
 
@@ -69,9 +69,9 @@ class Listing {
         petsAllowed: PetsAllowed.fromMap(json["pets_allowed"]),
         photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
         price: json["price"],
-        description: json["description"],
+        description: json["description"] ?? "",
         datePublication: DateTime.parse(json["date_publication"]),
-        uid: json["uid"],
+        uid: json["uid"] ?? "",
       );
 
   Map<String, dynamic> toMap() => {
@@ -215,7 +215,7 @@ class PetsAllowed {
   bool birds;
   bool rodents;
   bool exotic;
-  String others;
+  String others = "";
 
   factory PetsAllowed.fromJson(String str) =>
       PetsAllowed.fromMap(json.decode(str));
@@ -229,7 +229,7 @@ class PetsAllowed {
         birds: json["birds"],
         rodents: json["rodents"],
         exotic: json["exotic"],
-        others: json["others"],
+        others: json["others"] ?? "",
       );
 
   Map<String, dynamic> toMap() => {

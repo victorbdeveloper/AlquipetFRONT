@@ -37,9 +37,10 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   get: ^4.6.1
   get_it: ^7.2.0
-  google_fonts: ^2.1.1
+  google_fonts: ^2.2.0
   google_sign_in: ^5.2.1
   image_picker: ^0.8.4+4
+  responsive_grid_list: ^1.2.3
   shared_preferences: ^2.0.11
   url_strategy: ^0.2.0
 

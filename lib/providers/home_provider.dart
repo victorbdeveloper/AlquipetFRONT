@@ -7,7 +7,7 @@ class HomeProvider extends GetxController {
       getFilteredListingsPaginatedResponse;
 
 //TODO: INCLUIR LA CARGA INICIAL DE LOS DATOS DE LA PG, OBTENER ANUNCIOS TOTALES Y FILTRADOS
-  dynamic testPeticion() async {
+  dynamic getFilteredPaginatedListings() async {
     ///DEFINIR QUERYPARAMS
     // final queryParameters = {'id': '61ac01f8ccec88e05fe6be23'};
     final queryParameters = {};
@@ -30,7 +30,6 @@ class HomeProvider extends GetxController {
        getFilteredListingsPaginatedResponse =
           GetFilteredListingsPaginatedResponse.fromMap(response);
 
-      print(getFilteredListingsPaginatedResponse.results.first.petsAllowed);
       return getFilteredListingsPaginatedResponse;
     } catch (e) {
       print("Error: $e");
