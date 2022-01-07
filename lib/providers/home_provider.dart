@@ -1,10 +1,9 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/models/http/get_filtered_listings_paginated_response.dart';
+import 'package:alquipet_front/models/http/filtered_listings_response.dart';
 import 'package:get/get.dart';
 
 class HomeProvider extends GetxController {
-  late GetFilteredListingsPaginatedResponse
-      getFilteredListingsPaginatedResponse;
+  late FilteredListingsResponse filteredListingsResponse;
 
 //TODO: INCLUIR LA CARGA INICIAL DE LOS DATOS DE LA PG, OBTENER ANUNCIOS TOTALES Y FILTRADOS
   dynamic getFilteredPaginatedListings() async {
@@ -27,10 +26,9 @@ class HomeProvider extends GetxController {
         '/listings/get_filtered_listing_paginated',
       );
 
-       getFilteredListingsPaginatedResponse =
-          GetFilteredListingsPaginatedResponse.fromMap(response);
+      filteredListingsResponse = FilteredListingsResponse.fromMap(response);
 
-      return getFilteredListingsPaginatedResponse;
+      return filteredListingsResponse;
     } catch (e) {
       print("Error: $e");
     }

@@ -47,21 +47,22 @@ class Sidebar extends StatelessWidget {
                 MenuItem(
                   text: 'Inicio',
                   onPressed: () {
-                    if (sideMenuProvider.currentPage != "/inicio") {
-                      Get.toNamed("/inicio");
+                    if (sideMenuProvider.currentPage != "/") {
+                      Get.toNamed("/");
+                      sideMenuProvider.setCurrentPageUrl("/");
                     }
                   },
-                  isActive: sideMenuProvider.currentPage == "/inicio",
+                  isActive: sideMenuProvider.currentPage == "/",
                 ),
-                MenuItem(
-                  text: 'TEST',
-                  onPressed: () {
-                    if (sideMenuProvider.currentPage != "/anuncio") {
-                      Get.toNamed("/anuncio");
-                    }
-                  },
-                  isActive: sideMenuProvider.currentPage == "/anuncio",
-                ),
+                // MenuItem(
+                //   text: 'TEST',
+                //   onPressed: () {
+                //     if (sideMenuProvider.currentPage != "/anuncio") {
+                //       Get.toNamed("/anuncio");
+                //     }
+                //   },
+                //   isActive: sideMenuProvider.currentPage == "/anuncio",
+                // ),
                 if (authProvider.authStatus == AuthStatus.authenticated)
                   Column(
                     children: <Widget>[

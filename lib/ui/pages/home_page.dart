@@ -120,21 +120,17 @@ class _HomePageContent extends StatefulWidget {
   __HomePageContentState createState() => __HomePageContentState();
 }
 
-class __HomePageContentState extends State<_HomePageContent>
-    with SingleTickerProviderStateMixin {
+class __HomePageContentState extends State<_HomePageContent> {
   late HomeProvider homeProvider;
-  late AnimationController _animationController;
 
   @override
   void initState() {
     homeProvider = Get.find<HomeProvider>();
-    _animationController = AnimationController(vsync: this);
     super.initState();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
     super.dispose();
   }
 
@@ -162,30 +158,28 @@ class __HomePageContentState extends State<_HomePageContent>
                   padding: const EdgeInsets.all(20.0),
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: homeProvider
-                      .getFilteredListingsPaginatedResponse.results.length,
+                  itemCount:
+                      homeProvider.filteredListingsResponse.results!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTapUp: (details) {
                         Get.toNamed("/anuncio",
                             parameters: {
                               "id": homeProvider
-                                  .getFilteredListingsPaginatedResponse
-                                  .results[index]
-                                  .uid
+                                  .filteredListingsResponse.results![index].uid!
                             },
                             arguments: homeProvider
-                                .getFilteredListingsPaginatedResponse
-                                .results[index]);
+                                .filteredListingsResponse.results![index]);
                       },
                       child: Hero(
-                        tag: homeProvider.getFilteredListingsPaginatedResponse
-                            .results[index].uid,
+                        tag: homeProvider
+                            .filteredListingsResponse.results![index].uid!,
                         child: Card(
-                          child: Text(homeProvider
-                              .getFilteredListingsPaginatedResponse
-                              .anunciosMostrados
-                              .toString()),
+                          child: Text(
+                            homeProvider
+                                .filteredListingsResponse.anunciosMostrados
+                                .toString(),
+                          ),
                         ),
                       ),
                     );
@@ -200,29 +194,26 @@ class __HomePageContentState extends State<_HomePageContent>
                   verticalGridMargin: 50,
                   minItemWidth: 100,
                   children: List.generate(
-                    homeProvider
-                        .getFilteredListingsPaginatedResponse.results.length,
+                    homeProvider.filteredListingsResponse.results!.length,
                     (index) => GestureDetector(
                       onTapUp: (details) {
                         Get.toNamed("/anuncio",
                             parameters: {
                               "id": homeProvider
-                                  .getFilteredListingsPaginatedResponse
-                                  .results[index]
-                                  .uid
+                                  .filteredListingsResponse.results![index].uid!
                             },
                             arguments: homeProvider
-                                .getFilteredListingsPaginatedResponse
-                                .results[index]);
+                                .filteredListingsResponse.results![index]);
                       },
                       child: Hero(
-                        tag: homeProvider.getFilteredListingsPaginatedResponse
-                            .results[index].uid,
+                        tag: homeProvider
+                            .filteredListingsResponse.results![index].uid!,
                         child: Card(
-                          child: Text(homeProvider
-                              .getFilteredListingsPaginatedResponse
-                              .anunciosMostrados
-                              .toString()),
+                          child: Text(
+                            homeProvider
+                                .filteredListingsResponse.anunciosMostrados
+                                .toString(),
+                          ),
                         ),
                       ),
                     ),
@@ -235,34 +226,29 @@ class __HomePageContentState extends State<_HomePageContent>
                       verticalGridMargin: 50,
                       minItemWidth: 200,
                       children: List.generate(
-                        homeProvider.getFilteredListingsPaginatedResponse
-                            .results.length,
+                        homeProvider.filteredListingsResponse.results!.length,
                         (index) => GestureDetector(
                           onTapUp: (details) {
                             Get.toNamed("/anuncio",
                                 parameters: {
-                                  "id": homeProvider
-                                      .getFilteredListingsPaginatedResponse
-                                      .results[index]
-                                      .uid
+                                  "id": homeProvider.filteredListingsResponse
+                                      .results![index].uid!
                                 },
                                 arguments: homeProvider
-                                    .getFilteredListingsPaginatedResponse
-                                    .results[index]);
+                                    .filteredListingsResponse.results![index]);
                           },
                           child: Hero(
                             tag: homeProvider
-                                .getFilteredListingsPaginatedResponse
-                                .results[index]
-                                .uid,
+                                .filteredListingsResponse.results![index].uid!,
                             child: SizedBox(
                               width: 300,
                               height: 300,
                               child: Card(
-                                child: Text(homeProvider
-                                    .getFilteredListingsPaginatedResponse
-                                    .anunciosMostrados
-                                    .toString()),
+                                child: Text(
+                                  homeProvider.filteredListingsResponse
+                                      .anunciosMostrados
+                                      .toString(),
+                                ),
                               ),
                             ),
                           ),

@@ -1,5 +1,5 @@
-import 'package:alquipet_front/models/http/get_filtered_listings_paginated_response.dart';
 import 'package:alquipet_front/providers/listing_provider.dart';
+import 'package:alquipet_front/providers/side_menu_provider.dart';
 import 'package:alquipet_front/ui/buttons/custom_outlined_button.dart';
 import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +15,37 @@ class ListingPage extends StatefulWidget {
 class _ListingPageState extends State<ListingPage> {
   late String? id;
   late ListingProvider listingProvider;
+  late SideMenuProvider sideMenuProvider;
   bool listingRecibedByParams = true;
 
   @override
   void initState() {
     listingProvider = Get.find<ListingProvider>();
+    sideMenuProvider = Get.find<SideMenuProvider>();
 
     id = Get.parameters["id"];
-    print("ID: $id");
 
     if (Get.arguments == null) {
       ///SI NO HAY ARGUMENTOS PASADOS DESDE LA RUTA ANTERIOR ES QUE SE HA ACCEDIDO PONIENDO LA URL EN EL NAVEGADOR
       listingRecibedByParams = false;
+    } else {
+      listingProvider.listing = Get.arguments;
     }
     super.initState();
+  }
+
+  ///DISPOSE SALTA CUANDO SE PULSA EL BOTÓN DE ATRÁS --> Get.back()
+  @override
+  void dispose() {
+    ///Si se está en formato mvl y con el menu abierto, hay que cerrarlo
+    if (Get.width < 650 && SideMenuProvider.isOpen) {
+      SideMenuProvider.closeMenu();
+    }
+
+    /// Establecer el nombre de la ruta anterior al borrar esta página
+    sideMenuProvider.setCurrentPageUrl(Get.previousRoute);
+
+    super.dispose();
   }
 
   @override
@@ -136,27 +153,13 @@ class _ListingPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Get.arguments == null) {
-      final ListingProvider listingProvider = Get.find<ListingProvider>();
-      return Hero(
-        // transitionOnUserGestures: true,
-        tag: listingProvider.getListingByIdResponse.listing.uid,
-        child: Card(
-          child:
-              Text(listingProvider.getListingByIdResponse.listing.toString()),
-        ),
-      );
-    } else {
-      final Result listing = Get.arguments;
-      return Hero(
-        // transitionOnUserGestures: true,
-        tag: listing.uid,
-        child: Card(
-          child: Text(
-            listing.toString(),
-          ),
-        ),
-      );
-    }
+    final ListingProvider listingProvider = Get.find<ListingProvider>();
+
+    return Hero(
+      tag: listingProvider.listing.uid!,
+      child: Card(
+        child: Text(listingProvider.listing.toString()),
+      ),
+    );
   }
 }

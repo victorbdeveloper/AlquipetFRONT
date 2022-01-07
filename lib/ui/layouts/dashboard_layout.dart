@@ -19,14 +19,17 @@ class DashboardLayout extends StatefulWidget {
 }
 
 class _DashboardLayoutState extends State<DashboardLayout>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
+    // with SingleTickerProviderStateMixin
+{
 
-    SideMenuProvider.menuController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   SideMenuProvider.menuController = AnimationController(
+  //       vsync: this, duration: const Duration(milliseconds: 300));
+  //   SideMenuProvider.menuController.addListener(() => print(
+  //       "Animation Controller value: ${SideMenuProvider.menuController.value}"));
+  // }
 
   @override
   Widget build(BuildContext context) {

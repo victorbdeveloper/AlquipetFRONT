@@ -32,15 +32,13 @@ List<GetPage<dynamic>> routes() {
       middlewares: [AuthMiddleware(), FavoriteListingMiddleware()],
     ),
     GetPage(
-      name: '/inicio',
-      // maintainState: true,
+      name: '/',
       page: () => const HomePage(),
       transition: Transition.noTransition,
       middlewares: [HomeMiddleware()],
     ),
     GetPage(
       name: '/anuncio',
-      // maintainState: true,
       page: () => const ListingPage(),
       transition: Transition.noTransition,
       middlewares: [ListingMiddleware()],

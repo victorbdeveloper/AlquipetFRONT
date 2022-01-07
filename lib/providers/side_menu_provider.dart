@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SideMenuProvider extends GetxController {
+class SideMenuProvider extends GetxController
+    with GetSingleTickerProviderStateMixin {
   static late AnimationController menuController;
-
   static bool isOpen = false;
 
-  String _currentPage = '';
+  String _currentPage = '/';
+
+  @override
+  void onInit() {
+    super.onInit();
+    SideMenuProvider.menuController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
+    SideMenuProvider.menuController.addListener(() => print(
+        "Animation Controller value: ${SideMenuProvider.menuController.value}"));
+  }
 
   String get currentPage {
     return _currentPage;

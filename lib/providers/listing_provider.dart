@@ -1,5 +1,6 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/models/http/get_listing_by_id_response.dart';
+import 'package:alquipet_front/models/http/listing_response.dart';
+import 'package:alquipet_front/models/listing.dart';
 import 'package:get/get.dart';
 
 class ListingProvider extends GetxController {
@@ -10,7 +11,8 @@ class ListingProvider extends GetxController {
 //TODO: DELETE ANUNCIO TO FAVORITES
 //TODO: AÑADIR FOTOS AL ANUNCIO
 //TODO: QUITAR FOTOS AL ANUNCIO
-  late GetListingByIdResponse getListingByIdResponse;
+  late ListingResponse listingResponse;
+  late Listing listing;
 
   dynamic getListingById(String id) async {
     ///DEFINIR QUERYPARAMS
@@ -18,14 +20,17 @@ class ListingProvider extends GetxController {
 
     ///REALIZAR PETICIÓN
     try {
-      print("BBBBBBBB");
       var response = await AlquipetApi.dioGet('/listings/get_listing_by_id',
           queryParams: queryParameters);
       print("RESPONSE: $response");
-      getListingByIdResponse = GetListingByIdResponse.fromMap(response);
 
-      print("LISTING: $getListingByIdResponse");
-      return getListingByIdResponse;
+      listingResponse = ListingResponse.fromMap(response);
+      print("LISTING RESPONSE: $listingResponse");
+
+      listing = listingResponse.listing!;
+      print("LISTING: $listing");
+
+      return listingResponse;
     } catch (e) {
       print("Error: $e");
     }

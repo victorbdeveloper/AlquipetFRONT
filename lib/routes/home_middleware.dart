@@ -6,7 +6,7 @@ class HomeMiddleware extends GetMiddleware {
 
   @override
   GetPage onPageCalled(GetPage? page) {
-    sideMenuProvider.setCurrentPageUrl("/inicio");
+    sideMenuProvider.setCurrentPageUrl("/");
     return page!;
   }
 }

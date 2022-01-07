@@ -1,5 +1,6 @@
 import 'package:alquipet_front/api/alquipet_api.dart';
 import 'package:alquipet_front/models/http/auth_response.dart';
+import 'package:alquipet_front/models/user.dart';
 import 'package:alquipet_front/providers/side_menu_provider.dart';
 import 'package:alquipet_front/services/local_storage.dart';
 import 'package:alquipet_front/services/notifications_service.dart';
@@ -83,7 +84,7 @@ class AuthProvider extends GetxController {
       authType = AuthType.email;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token);
+      LocalStorage.prefs.setString('token', authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
@@ -131,7 +132,7 @@ class AuthProvider extends GetxController {
       authType = AuthType.google;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token);
+      LocalStorage.prefs.setString('token', authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();

@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         page: () => const NotFoundPage(),
         transition: Transition.noTransition,
       ),
-      initialRoute: '/inicio',
+      initialRoute: '/',
       getPages: routes(),
     );
   }
