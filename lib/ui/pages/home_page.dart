@@ -1,11 +1,11 @@
-import 'package:alquipet_front/providers/home_provider.dart';
-import 'package:alquipet_front/ui/buttons/custom_outlined_button.dart';
-import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:responsive_grid_list/responsive_grid_list.dart';
+import "package:alquipet_front/providers/home_provider.dart";
+import "package:alquipet_front/ui/buttons/custom_outlined_button.dart";
+import "package:alquipet_front/ui/layouts/dashboard_layout.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:responsive_grid_list/responsive_grid_list.dart";
 
-import '../responsive.dart';
+import "../responsive.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const Text(
-                          'Ha sucedido algo inesperado',
+                          "Ha sucedido algo inesperado",
                         ),
                         const SizedBox(
                           height: 10.0,
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   children: const <Widget>[
                     Center(
                       child: Text(
-                        'No hay datos que mostrar',
+                        "No hay datos que mostrar",
                       ),
                     )
                   ],
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Center(
                     child: Text(
-                      'State: ${snapshot.connectionState}',
+                      "State: ${snapshot.connectionState}",
                     ),
                   )
                 ],

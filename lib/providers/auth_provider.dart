@@ -1,12 +1,11 @@
-import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/models/http/auth_response.dart';
-import 'package:alquipet_front/models/user.dart';
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:alquipet_front/services/local_storage.dart';
-import 'package:alquipet_front/services/notifications_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import "package:alquipet_front/api/alquipet_api.dart";
+import "package:alquipet_front/models/http/auth_response.dart";
+import "package:alquipet_front/models/user.dart";
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/services/local_storage.dart";
+import "package:alquipet_front/services/notifications_service.dart";
+import "package:get/get.dart";
+import "package:google_sign_in/google_sign_in.dart";
 
 enum AuthStatus { checking, authenticated, notAuthenticated }
 enum AuthType { notYet, email, google }
@@ -24,7 +23,7 @@ class AuthProvider extends GetxController {
   //
   // /// COMPRUEBA SI EL USUARIO ESTA AUTENTICADO
   // Future<bool> isAuthenticated() async {
-  //   final token = LocalStorage.prefs.getString('token');
+  //   final token = LocalStorage.prefs.getString("token");
   //
   //   if (token == null) {
   //     authStatus = AuthStatus.notAuthenticated;
@@ -53,28 +52,28 @@ class AuthProvider extends GetxController {
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/users/create_user', body: data),
+        await AlquipetApi.dioPost("/users/create_user", body: data),
       );
 
       print("AUTHRESPONSE cU: ${authResponse.toString()}");
-      Get.toNamed("/login");
+      Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
     } catch (error) {
-      authStatus = AuthStatus.notAuthenticated;
+        authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print(error.toString());
-      NotificationsService.showSnackBarError('Email / Nick no válidos');
-      Get.toNamed("/login");
+      NotificationsService.showSnackBarError("Email / Nick no válidos");
+      Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
     }
   }
 
   /// LOGIN EMAIL
-  Future<void> loginEmail(Map<String, String> data) async {
+  Future<bool> loginEmail(Map<String, String> data) async {
     print("DATA: ${data.toString()}");
 
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/auth/login_email', body: data),
+        await AlquipetApi.dioPost("/auth/login_email", body: data),
       );
       print("AUTHRESPONSE lE: ${authResponse.toString()}");
 
@@ -84,25 +83,27 @@ class AuthProvider extends GetxController {
       authType = AuthType.email;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token!);
+      LocalStorage.prefs.setString("token", authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
 
       ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
-      sideMenuProvider.update();
+      // final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
+      // sideMenuProvider.update();
 
       ///MUESTRA MENSAJE Y REDIRIGE A INICIO
-      NotificationsService.showSnackBar('Login correcto. Bienvenido!');
-      Get.toNamed("/inicio");
+      NotificationsService.showSnackBar("Login correcto. Bienvenido!");
+      // Get.offNamed("/");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      print(error.toString());
-      NotificationsService.showSnackBarError('Email / Contraseña no válidos');
-      Get.toNamed("/login");
+      print("ERROR: ${error.toString()}");
+      NotificationsService.showSnackBarError("Email / Contraseña no válidos");
+      // Get.toNamed("/login");
+      return false;
     }
+    return true;
   }
 
   ///LOGIN GOOGLE
@@ -121,7 +122,7 @@ class AuthProvider extends GetxController {
 
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/auth/login_google',
+        await AlquipetApi.dioPost("/auth/login_google",
             body: {"id_token": _googleSignInAuthentication.idToken}),
       );
       print("AUTHRESPONSE hSI: $authResponse");
@@ -132,7 +133,7 @@ class AuthProvider extends GetxController {
       authType = AuthType.google;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token!);
+      LocalStorage.prefs.setString("token", authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
@@ -142,14 +143,14 @@ class AuthProvider extends GetxController {
       sideMenuProvider.update();
 
       ///MUESTRA MENSAJE Y REDIRIGE A INICIO
-      NotificationsService.showSnackBar('Login correcto. Bienvenido!');
-      Get.toNamed("/inicio");
+      NotificationsService.showSnackBar("Login correcto. Bienvenido!");
+      Get.offNamed("/");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print(error.toString());
       NotificationsService.showSnackBarError(
-          'Error al iniciar sesión con Google');
+          "Error al iniciar sesión con Google");
       Get.toNamed("/login");
     }
 
@@ -169,7 +170,7 @@ class AuthProvider extends GetxController {
     }
 
     ///ELIMINA EL TOKEN DEL LOCAL STORAGE
-    LocalStorage.prefs.remove('token');
+    LocalStorage.prefs.remove("token");
 
     ///ACTUALIZA LAS VARIABLES
     authStatus = AuthStatus.notAuthenticated;
@@ -181,9 +182,9 @@ class AuthProvider extends GetxController {
     update();
 
     ///MUESTRA MENSAJE
-    NotificationsService.showSnackBarLogout('Sesión cerrada con éxito');
+    NotificationsService.showSnackBarLogout("Sesión cerrada con éxito");
 
     ///REDIRIGE A INICIO Y BORRA EL HISTORIAL DE RUTAS
-    Get.offAllNamed("/inicio");
+    Get.offAllNamed("/");
   }
 }

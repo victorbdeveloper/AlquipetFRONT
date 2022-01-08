@@ -1,7 +1,7 @@
-import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/models/http/listing_response.dart';
-import 'package:alquipet_front/models/listing.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/api/alquipet_api.dart";
+import "package:alquipet_front/models/http/listing_response.dart";
+import "package:alquipet_front/models/listing.dart";
+import "package:get/get.dart";
 
 class ListingProvider extends GetxController {
 //TODO: CREAR ANUNCIO
@@ -16,11 +16,11 @@ class ListingProvider extends GetxController {
 
   dynamic getListingById(String id) async {
     ///DEFINIR QUERYPARAMS
-    final queryParameters = {'id': id};
+    final queryParameters = {"id": id};
 
     ///REALIZAR PETICIÓN
     try {
-      var response = await AlquipetApi.dioGet('/listings/get_listing_by_id',
+      var response = await AlquipetApi.dioGet("/listings/get_listing_by_id",
           queryParams: queryParameters);
       print("RESPONSE: $response");
 

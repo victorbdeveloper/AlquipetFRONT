@@ -1,5 +1,5 @@
-import 'package:alquipet_front/services/local_storage.dart';
-import 'package:dio/dio.dart';
+import "package:alquipet_front/services/local_storage.dart";
+import "package:dio/dio.dart";
 
 class AlquipetApi {
   static final Dio _dio = Dio();
@@ -8,18 +8,18 @@ class AlquipetApi {
     //TODO: CAMBIAR AL DESPLEGAR A PRODUCCIÓN
     /// BASE URL
     /// desarrollo - local
-    _dio.options.baseUrl = 'http://localhost:8081/api';
+    _dio.options.baseUrl = "http://localhost:8081/api";
 
     /// desarrollo - heroku
-    // _dio.options.baseUrl = 'https://alquipet.herokuapp.com/api';
+    // _dio.options.baseUrl = "https://alquipet.herokuapp.com/api";
 
     /// producción - heroku + google domains
-    // _dio.options.baseUrl = 'https://alquipet.com/api';
+    // _dio.options.baseUrl = "https://alquipet.com/api";
 
     /// HEADERS
     _dio.options.headers = {
       /// establecer JWT
-      'Authorization': 'Bearer: ${LocalStorage.prefs.getString('token') ?? ''}'
+      "Authorization": "Bearer: ${LocalStorage.prefs.getString("token") ?? ""}"
     };
   }
 
@@ -30,7 +30,7 @@ class AlquipetApi {
       return resp.data;
     } on DioError catch (e) {
       print(e.response);
-      throw ('Error en el GET');
+      throw ("Error en el GET");
     }
   }
 
@@ -53,8 +53,8 @@ class AlquipetApi {
 
       return resp.data;
     } on DioError catch (e) {
-      print('ERROR DIO POST: $e');
-      throw ('Error en el POST');
+      print("ERROR DIO POST: $e");
+      throw ("Error en el POST");
     }
   }
 
@@ -73,7 +73,7 @@ class AlquipetApi {
       return resp.data;
     } on DioError catch (e) {
       print(e);
-      throw ('Error en el PUT $e');
+      throw ("Error en el PUT $e");
     }
   }
 
@@ -92,14 +92,14 @@ class AlquipetApi {
       return resp.data;
     } on DioError catch (e) {
       print(e);
-      throw ('Error en el delete');
+      throw ("Error en el delete");
     }
   }
 
 //TODO:!!!
 // static Future uploadFile(String path, Uint8List bytes) async {
 //   final formData =
-//       FormData.fromMap({'archivo': MultipartFile.fromBytes(bytes)});
+//       FormData.fromMap({"archivo": MultipartFile.fromBytes(bytes)});
 //
 //   try {
 //     final resp = await _dio.put(path, data: formData);
@@ -107,7 +107,7 @@ class AlquipetApi {
 //     return resp.data;
 //   } on DioError catch (e) {
 //     print(e);
-//     throw ('Error en el PUT $e');
+//     throw ("Error en el PUT $e");
 //   }
 // }
 }

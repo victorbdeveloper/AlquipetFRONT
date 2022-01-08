@@ -1,9 +1,9 @@
-import 'package:alquipet_front/providers/listing_provider.dart';
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:alquipet_front/ui/buttons/custom_outlined_button.dart';
-import 'package:alquipet_front/ui/layouts/dashboard_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/providers/listing_provider.dart";
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/ui/buttons/custom_outlined_button.dart";
+import "package:alquipet_front/ui/layouts/dashboard_layout.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 class ListingPage extends StatefulWidget {
   const ListingPage({Key? key}) : super(key: key);
@@ -85,7 +85,7 @@ class _ListingPageState extends State<ListingPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               const Text(
-                                'Ha sucedido algo inesperado',
+                                "Ha sucedido algo inesperado",
                               ),
                               const SizedBox(
                                 height: 10.0,
@@ -118,7 +118,7 @@ class _ListingPageState extends State<ListingPage> {
                         children: const <Widget>[
                           Center(
                             child: Text(
-                              'No hay datos que mostrar',
+                              "No hay datos que mostrar",
                             ),
                           )
                         ],
@@ -133,7 +133,7 @@ class _ListingPageState extends State<ListingPage> {
                       children: <Widget>[
                         Center(
                           child: Text(
-                            'State: ${snapshot.connectionState}',
+                            "State: ${snapshot.connectionState}",
                           ),
                         )
                       ],

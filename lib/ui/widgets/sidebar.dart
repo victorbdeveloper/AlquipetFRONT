@@ -1,11 +1,11 @@
-import 'package:alquipet_front/providers/auth_provider.dart';
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:alquipet_front/ui/buttons/custom_outlined_button.dart';
-import 'package:alquipet_front/ui/widgets/text_separator.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/providers/auth_provider.dart";
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/ui/buttons/custom_outlined_button.dart";
+import "package:alquipet_front/ui/widgets/text_separator.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import 'menu_item.dart';
+import "menu_item.dart";
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
@@ -33,19 +33,19 @@ class Sidebar extends StatelessWidget {
                             onPressed: () {
                               Get.toNamed("/login");
                             },
-                            text: 'LOGIN',
+                            text: "LOGIN",
                           )
                         : CustomOutlinedButton(
                             onPressed: () {
                               authProvider.logout();
                             },
-                            text: 'LOGOUT',
+                            text: "LOGOUT",
                           ),
                   ),
                 ),
-                const TextSeparator(iconData: Icons.home, text: 'Home'),
+                const TextSeparator(iconData: Icons.home, text: "Home"),
                 MenuItem(
-                  text: 'Inicio',
+                  text: "Inicio",
                   onPressed: () {
                     if (sideMenuProvider.currentPage != "/") {
                       Get.toNamed("/");
@@ -55,7 +55,7 @@ class Sidebar extends StatelessWidget {
                   isActive: sideMenuProvider.currentPage == "/",
                 ),
                 // MenuItem(
-                //   text: 'TEST',
+                //   text: "TEST",
                 //   onPressed: () {
                 //     if (sideMenuProvider.currentPage != "/anuncio") {
                 //       Get.toNamed("/anuncio");
@@ -67,9 +67,9 @@ class Sidebar extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       const TextSeparator(
-                          iconData: Icons.account_circle, text: 'Usuario'),
+                          iconData: Icons.account_circle, text: "Usuario"),
                       MenuItem(
-                        text: 'Perfil',
+                        text: "Perfil",
                         onPressed: () {
                           if (sideMenuProvider.currentPage != "/usuario") {
                             Get.toNamed("/usuario");
@@ -79,9 +79,9 @@ class Sidebar extends StatelessWidget {
                       ),
                       const TextSeparator(
                           iconData: Icons.list_alt,
-                          text: 'Gestión de anuncios'),
+                          text: "Gestión de anuncios"),
                       MenuItem(
-                        text: 'Crear anuncio',
+                        text: "Crear anuncio",
                         onPressed: () {
                           if (sideMenuProvider.currentPage !=
                               "/crear_anuncio") {
@@ -92,7 +92,7 @@ class Sidebar extends StatelessWidget {
                             sideMenuProvider.currentPage == "/crear_anuncio",
                       ),
                       MenuItem(
-                        text: 'Mis anuncios',
+                        text: "Mis anuncios",
                         onPressed: () {
                           if (sideMenuProvider.currentPage != "/mis_anuncios") {
                             Get.toNamed("/mis_anuncios");
@@ -102,7 +102,7 @@ class Sidebar extends StatelessWidget {
                             sideMenuProvider.currentPage == "/mis_anuncios",
                       ),
                       MenuItem(
-                        text: 'Favoritos',
+                        text: "Favoritos",
                         onPressed: () {
                           if (sideMenuProvider.currentPage !=
                               "/anuncios_favoritos") {

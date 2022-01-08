@@ -1,10 +1,10 @@
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:alquipet_front/ui/widgets/navbar.dart';
-import 'package:alquipet_front/ui/widgets/sidebar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/ui/widgets/navbar.dart";
+import "package:alquipet_front/ui/widgets/sidebar.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import '../responsive.dart';
+import "../responsive.dart";
 
 class DashboardLayout extends StatefulWidget {
   final Widget child;

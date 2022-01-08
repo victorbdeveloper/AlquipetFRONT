@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 
 ThemeData get myLightTheme {
   /// Initialize ThemeData.
@@ -18,30 +18,30 @@ ThemeData get myLightTheme {
     ),
     textTheme: theme.textTheme.copyWith(
       button:
-          GoogleFonts.getFont('Montserrat', textStyle: theme.textTheme.button),
+          GoogleFonts.getFont("Montserrat", textStyle: theme.textTheme.button),
       caption:
-          GoogleFonts.getFont('Montserrat', textStyle: theme.textTheme.caption),
-      overline: GoogleFonts.getFont('Montserrat',
+          GoogleFonts.getFont("Montserrat", textStyle: theme.textTheme.caption),
+      overline: GoogleFonts.getFont("Montserrat",
           textStyle: theme.textTheme.overline),
-      bodyText1: GoogleFonts.getFont('Montserrat',
+      bodyText1: GoogleFonts.getFont("Montserrat",
           textStyle: theme.textTheme.bodyText1),
-      bodyText2: GoogleFonts.getFont('Montserrat',
+      bodyText2: GoogleFonts.getFont("Montserrat",
           textStyle: theme.textTheme.bodyText2),
       headline1:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline1),
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline1),
       headline2:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline2),
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline2),
       headline3:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline3),
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline3),
       headline4:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline4),
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline4),
       headline5:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline5),
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline5),
       headline6:
-          GoogleFonts.getFont('Roboto', textStyle: theme.textTheme.headline6),
-      subtitle1: GoogleFonts.getFont('Montserrat',
+          GoogleFonts.getFont("Roboto", textStyle: theme.textTheme.headline6),
+      subtitle1: GoogleFonts.getFont("Montserrat",
           textStyle: theme.textTheme.subtitle1),
-      subtitle2: GoogleFonts.getFont('Montserrat',
+      subtitle2: GoogleFonts.getFont("Montserrat",
           textStyle: theme.textTheme.subtitle2),
     ),
   );
@@ -190,7 +190,7 @@ ThemeData get myLightTheme {
         ),
       ),
       labelStyle: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.chipTheme.labelStyle,
         color: const Color(0xff01579b),
         fontSize: 14.0,
@@ -208,7 +208,7 @@ ThemeData get myLightTheme {
         ],
       ),
       secondaryLabelStyle: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.chipTheme.labelStyle,
         color: const Color(0xff1a237e),
         fontSize: 24.0,
@@ -373,7 +373,7 @@ ThemeData get myLightTheme {
   theme = theme.copyWith(
     textTheme: theme.textTheme.copyWith(
       button: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.button,
         color: const Color(0xff1de9b6),
         fontWeight: FontWeight.w800,
@@ -387,7 +387,7 @@ ThemeData get myLightTheme {
         ],
       ),
       caption: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.caption,
         color: const Color(0xffe91e63),
         fontWeight: FontWeight.w500,
@@ -401,7 +401,7 @@ ThemeData get myLightTheme {
         ],
       ),
       overline: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.overline,
         color: const Color(0xff2962ff),
         fontWeight: FontWeight.w400,
@@ -415,7 +415,7 @@ ThemeData get myLightTheme {
         ],
       ),
       subtitle1: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.subtitle1,
         color: const Color(0xff18ffff),
         fontWeight: FontWeight.w200,
@@ -466,7 +466,7 @@ ThemeData get myLightTheme {
         ],
       ),
       headline1: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.headline1,
         color: const Color(0xff311b92),
         fontWeight: FontWeight.w300,
@@ -480,7 +480,7 @@ ThemeData get myLightTheme {
         ],
       ),
       headline2: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.headline2,
         color: const Color(0xffffff00),
         fontWeight: FontWeight.w900,
@@ -494,7 +494,7 @@ ThemeData get myLightTheme {
         ],
       ),
       headline3: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.headline3,
         color: const Color(0xff004d40),
         fontWeight: FontWeight.w400,
@@ -508,7 +508,7 @@ ThemeData get myLightTheme {
         ],
       ),
       headline4: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.headline4,
         color: const Color(0xffb9f6ca),
         fontWeight: FontWeight.w600,
@@ -522,7 +522,7 @@ ThemeData get myLightTheme {
         ],
       ),
       headline5: GoogleFonts.getFont(
-        'Montserrat',
+        "Montserrat",
         textStyle: theme.textTheme.headline5,
         color: const Color(0xffea80fc),
         fontWeight: FontWeight.w700,
@@ -562,7 +562,7 @@ ThemeData get myLightTheme {
       elevation: 2.0,
       textTheme: (const TextTheme()).copyWith(
         headline6: GoogleFonts.getFont(
-          'Montserrat',
+          "Montserrat",
           textStyle: theme.textTheme.headline6,
           color: const Color(0xffab47bc),
           fontSize: 16.0,

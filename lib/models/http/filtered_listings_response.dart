@@ -1,6 +1,6 @@
-import 'dart:convert';
+import "dart:convert";
 
-import '../listing.dart';
+import "../listing.dart";
 
 class FilteredListingsResponse {
   FilteredListingsResponse({
@@ -49,7 +49,7 @@ class FilteredListingsResponse {
 
   @override
   String toString() {
-    return 'ListingResponse{totalAnunciosEncontradosAplicandoLosFiltros: $totalAnunciosEncontradosAplicandoLosFiltros, anunciosMostrados: $anunciosMostrados, indiceDelPrimerAnuncioMostrado: $indiceDelPrimerAnuncioMostrado, indiceDelUltimoAnuncioMostrado: $indiceDelUltimoAnuncioMostrado, results: $results}';
+    return "ListingResponse{totalAnunciosEncontradosAplicandoLosFiltros: $totalAnunciosEncontradosAplicandoLosFiltros, anunciosMostrados: $anunciosMostrados, indiceDelPrimerAnuncioMostrado: $indiceDelPrimerAnuncioMostrado, indiceDelUltimoAnuncioMostrado: $indiceDelUltimoAnuncioMostrado, results: $results}";
   }
 }
 

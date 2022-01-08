@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 class Address {
   Address({
@@ -57,6 +57,6 @@ class Address {
 
   @override
   String toString() {
-    return 'Address{id: $id, province: $province, municipality: $municipality, postalCode: $postalCode, street: $street, number: $number, flour: $flour, letter: $letter, latitude: $latitude, longitude: $longitude}';
+    return "Address{id: $id, province: $province, municipality: $municipality, postalCode: $postalCode, street: $street, number: $number, flour: $flour, letter: $letter, latitude: $latitude, longitude: $longitude}";
   }
 }

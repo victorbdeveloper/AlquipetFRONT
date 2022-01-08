@@ -1,9 +1,9 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:alquipet_front/models/address.dart';
-import 'package:alquipet_front/models/pets_allowed.dart';
-import 'package:alquipet_front/models/photo.dart';
-import 'package:alquipet_front/models/user.dart';
+import "package:alquipet_front/models/address.dart";
+import "package:alquipet_front/models/pets_allowed.dart";
+import "package:alquipet_front/models/photo.dart";
+import "package:alquipet_front/models/user.dart";
 
 class Listing {
   Listing({
@@ -70,6 +70,6 @@ class Listing {
 
   @override
   String toString() {
-    return 'Listing{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, description: $description, datePublication: $datePublication, uid: $uid}';
+    return "Listing{createdBy: $createdBy, state: $state, address: $address, petsAllowed: $petsAllowed, photos: $photos, price: $price, description: $description, datePublication: $datePublication, uid: $uid}";
   }
 }

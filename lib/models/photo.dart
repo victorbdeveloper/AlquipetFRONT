@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 class Photo {
   Photo({
@@ -33,6 +33,6 @@ class Photo {
 
   @override
   String toString() {
-    return 'Photo{id: $id, fileName: $fileName, publicIdCloudinary: $publicIdCloudinary, urlCloudinary: $urlCloudinary}';
+    return "Photo{id: $id, fileName: $fileName, publicIdCloudinary: $publicIdCloudinary, urlCloudinary: $urlCloudinary}";
   }
 }

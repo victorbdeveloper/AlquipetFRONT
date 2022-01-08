@@ -1,6 +1,6 @@
-import 'dart:convert';
+import "dart:convert";
 
-import '../user.dart';
+import "../user.dart";
 
 class AuthResponse {
   AuthResponse({
@@ -32,6 +32,6 @@ class AuthResponse {
 
   @override
   String toString() {
-    return 'AuthResponse{msg: $msg, user: $user, token: $token}';
+    return "AuthResponse{msg: $msg, user: $user, token: $token}";
   }
 }

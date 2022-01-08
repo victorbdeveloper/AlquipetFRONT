@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 class PetsAllowed {
   PetsAllowed({
@@ -46,6 +46,6 @@ class PetsAllowed {
 
   @override
   String toString() {
-    return 'PetsAllowed{id: $id, dogs: $dogs, cats: $cats, birds: $birds, rodents: $rodents, exotic: $exotic, others: $others}';
+    return "PetsAllowed{id: $id, dogs: $dogs, cats: $cats, birds: $birds, rodents: $rodents, exotic: $exotic, others: $others}";
   }
 }

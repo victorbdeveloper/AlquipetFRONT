@@ -1,8 +1,8 @@
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import '../responsive.dart';
+import "../responsive.dart";
 
 class Navbar extends StatelessWidget {
   const Navbar({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class Navbar extends StatelessWidget {
                     children: <Widget>[
                       // Stroked text as border.
                       Text(
-                        'ALQUIPET',
+                        "ALQUIPET",
                         style: TextStyle(
                           fontSize: 40,
                           foreground: Paint()
@@ -44,7 +44,7 @@ class Navbar extends StatelessWidget {
                       ),
                       // Solid text as fill.
                       Text(
-                        'ALQUIPET',
+                        "ALQUIPET",
                         style: TextStyle(
                           fontSize: 40,
                           color: Colors.grey[300],

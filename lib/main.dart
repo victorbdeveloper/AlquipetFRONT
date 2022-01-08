@@ -1,16 +1,16 @@
-import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/providers/home_provider.dart';
-import 'package:alquipet_front/providers/listing_provider.dart';
-import 'package:alquipet_front/providers/auth_provider.dart';
-import 'package:alquipet_front/providers/side_menu_provider.dart';
-import 'package:alquipet_front/routes/routes.dart';
-import 'package:alquipet_front/services/local_storage.dart';
-import 'package:alquipet_front/services/notifications_service.dart';
-import 'package:alquipet_front/ui/pages/not_found_page.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:url_strategy/url_strategy.dart';
+import "package:alquipet_front/api/alquipet_api.dart";
+import "package:alquipet_front/providers/home_provider.dart";
+import "package:alquipet_front/providers/listing_provider.dart";
+import "package:alquipet_front/providers/auth_provider.dart";
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/routes/routes.dart";
+import "package:alquipet_front/services/local_storage.dart";
+import "package:alquipet_front/services/notifications_service.dart";
+import "package:alquipet_front/ui/pages/not_found_page.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:get/get_navigation/src/root/get_material_app.dart";
+import "package:url_strategy/url_strategy.dart";
 
 //TODO: COMANDO PARA EJECUTAR FLUTTER DESDE TERMINAL POR UN PUERTO ESPECÍFICO
 ///flutter run -d chrome --web-port=8082
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       ///TÍTULO
-      title: 'Alquipet',
+      title: "Alquipet",
 
       //TODO: PROBAR A QUITAR ESTA LINEA Y A SUSTITUIR EL SERVICE POR WIDGET CREADOS CON GETX
       scaffoldMessengerKey: NotificationsService.messengerKey,
@@ -51,11 +51,11 @@ class MyApp extends StatelessWidget {
 
       ///ROUTES
       unknownRoute: GetPage(
-        name: '/not_found',
+        name: "/not_found",
         page: () => const NotFoundPage(),
         transition: Transition.noTransition,
       ),
-      initialRoute: '/',
+      initialRoute: "/",
       getPages: routes(),
     );
   }
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
 //               print("a");
 //               Get.toNamed("/second", parameters: {"a": "1", "b": "2"});
 //             },
-//             text: 'IR A PG 2'),
+//             text: "IR A PG 2"),
 //       ),
 //     );
 //   }
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
 //             onPressed: () {
 //               print("a");
 //             },
-//             text: 'IR A HOME'),
+//             text: "IR A HOME"),
 //       ),
 //     );
 //   }

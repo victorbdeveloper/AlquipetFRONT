@@ -1,18 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 class SideMenuProvider extends GetxController
     with GetSingleTickerProviderStateMixin {
   static late AnimationController menuController;
   static bool isOpen = false;
 
-  String _currentPage = '/';
+  String _currentPage = "/";
 
   @override
   void onInit() {
     super.onInit();
     SideMenuProvider.menuController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
+    //TODO: ELIMINAR EL ADD LISTENER AL ACABAR!
     SideMenuProvider.menuController.addListener(() => print(
         "Animation Controller value: ${SideMenuProvider.menuController.value}"));
   }

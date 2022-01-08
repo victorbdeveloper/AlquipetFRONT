@@ -1,6 +1,6 @@
-import 'dart:convert';
+import "dart:convert";
 
-import '../user.dart';
+import "../user.dart";
 
 class UserResponse {
   UserResponse({
@@ -28,6 +28,6 @@ class UserResponse {
 
   @override
   String toString() {
-    return 'UserResponse{msg: $msg, user: $user}';
+    return "UserResponse{msg: $msg, user: $user}";
   }
 }
