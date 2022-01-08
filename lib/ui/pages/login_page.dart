@@ -33,19 +33,14 @@ class LoginPage extends StatelessWidget {
         additionalSignUpSubmitButton: "ACEPTAR",
         flushbarTitleSuccess: "CONFIRMADO",
       ),
-      onLogin: (p0) async {
-        bool loginOk = await authProvider.loginEmail({
+      onLogin: (p0) {
+        return authProvider.loginEmail({
           "email": p0.name,
           "password": p0.password,
         });
-        if (loginOk) {
-          print("HHHHHHHH");
-        } else {
-          print("GGGGGGGG");
-        }
       },
-
-      onSignup: (p0) async {
+loginAfterSignUp: false,
+      onSignup: (p0)  {
         Map<String, String> data = {
           "user_name": p0.additionalSignupData!["nick"]!,
           "name": p0.additionalSignupData!["name"]!,
@@ -55,7 +50,7 @@ class LoginPage extends StatelessWidget {
           "phone": p0.additionalSignupData!["phone"]!,
         };
         print("DATOS: $data");
-        await authProvider.createUser(data);
+        return authProvider.createUser(data);
       },
       additionalSignupFields: const <UserFormField>[
         UserFormField(
@@ -91,20 +86,14 @@ class LoginPage extends StatelessWidget {
         LoginProvider(
           button: Buttons.GoogleDark,
           label: "Google",
-          callback: () async {
-            await authProvider.handleSignIn();
+          callback: () {
+            return authProvider.handleSignIn();
           },
         ),
       ],
       disableCustomPageTransformer: true,
       onSubmitAnimationCompleted: () {
-        if (authProvider.authStatus == AuthStatus.authenticated) {
-          print("AAAAAAAAAAAAA");
-          Get.offNamed("/");
-        } else {
-          print("ZZZZZZZZZZZ");
-          //TODO: CONTROLAR AQUI QUE SE QUEDE EN EL LOGIN!!
-        }
+        Get.offNamed("/");
       },
 
       onRecoverPassword: (_) {},

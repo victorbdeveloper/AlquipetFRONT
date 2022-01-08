@@ -48,26 +48,27 @@ class AuthProvider extends GetxController {
   // }
 
   ///CREAR NUEVO USUARIO
-  Future<void> createUser(Map<String, String> data) async {
+  Future<String?> createUser(Map<String, String> data) async {
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost("/users/create_user", body: data),
       );
 
-      print("AUTHRESPONSE cU: ${authResponse.toString()}");
-      Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
+      // print("AUTHRESPONSE cU: ${authResponse.toString()}");
+      // Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
     } catch (error) {
-        authStatus = AuthStatus.notAuthenticated;
+      authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print(error.toString());
-      NotificationsService.showSnackBarError("Email / Nick no válidos");
-      Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
+      return ("Email / Nick no válidos");
+      // Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
     }
+    return null;
   }
 
   /// LOGIN EMAIL
-  Future<bool> loginEmail(Map<String, String> data) async {
+  Future<String?> loginEmail(Map<String, String> data) async {
     print("DATA: ${data.toString()}");
 
     try {
@@ -75,7 +76,7 @@ class AuthProvider extends GetxController {
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost("/auth/login_email", body: data),
       );
-      print("AUTHRESPONSE lE: ${authResponse.toString()}");
+      // print("AUTHRESPONSE lE: ${authResponse.toString()}");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -88,22 +89,15 @@ class AuthProvider extends GetxController {
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
 
-      ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      // final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
-      // sideMenuProvider.update();
-
-      ///MUESTRA MENSAJE Y REDIRIGE A INICIO
+      ///MUESTRA MENSAJE
       NotificationsService.showSnackBar("Login correcto. Bienvenido!");
-      // Get.offNamed("/");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print("ERROR: ${error.toString()}");
-      NotificationsService.showSnackBarError("Email / Contraseña no válidos");
-      // Get.toNamed("/login");
-      return false;
+      return "Email / Contraseña no válidos";
     }
-    return true;
+    return null;
   }
 
   ///LOGIN GOOGLE
@@ -111,21 +105,21 @@ class AuthProvider extends GetxController {
     try {
       ///INTENTA INICIAR SESIÓN CON GOOGLE SOLO SI NO ESTA INICIADA YA LA SESIÓN
       _googleSignInAccount = await _googleSignIn.signIn();
-      print("CURRENT USER: ${_googleSignIn.currentUser}");
+      // print("CURRENT USER: ${_googleSignIn.currentUser}");
 
       ///OBTIENE LA AUTENTICACIÓN DEL USUARIO
       GoogleSignInAuthentication _googleSignInAuthentication =
           await _googleSignInAccount!.authentication;
 
-      //TODO: ESTE ID ES EL QUE HAY QUE PASAR AL SERVICIO REST
-      print("ID: ${_googleSignInAuthentication.idToken}");
+      // //TODO: ESTE ID ES EL QUE HAY QUE PASAR AL SERVICIO REST
+      // print("ID: ${_googleSignInAuthentication.idToken}");
 
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost("/auth/login_google",
             body: {"id_token": _googleSignInAuthentication.idToken}),
       );
-      print("AUTHRESPONSE hSI: $authResponse");
+      // print("AUTHRESPONSE hSI: $authResponse");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -138,20 +132,13 @@ class AuthProvider extends GetxController {
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
 
-      ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
-      sideMenuProvider.update();
-
-      ///MUESTRA MENSAJE Y REDIRIGE A INICIO
+      ///MUESTRA MENSAJE
       NotificationsService.showSnackBar("Login correcto. Bienvenido!");
-      Get.offNamed("/");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print(error.toString());
-      NotificationsService.showSnackBarError(
-          "Error al iniciar sesión con Google");
-      Get.toNamed("/login");
+      return "No se ha podido iniciar sesión en Google";
     }
 
     return null;
