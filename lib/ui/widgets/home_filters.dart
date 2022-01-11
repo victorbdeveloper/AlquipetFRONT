@@ -44,9 +44,9 @@ class _HomeFiltersState extends State<HomeFilters> {
 
   @override
   void dispose() {
-    if (homeProvider.isPopupMenuOpen) {
-      Get.back();
-    }
+    // if (homeProvider.isPopupMenuOpen) {
+    //   Get.back();
+    // }
     super.dispose();
   }
 

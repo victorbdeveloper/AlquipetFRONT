@@ -151,8 +151,9 @@ class AuthProvider extends GetxController {
       }
     }
 
-    ///ELIMINA EL TOKEN DEL LOCAL STORAGE
+    ///ELIMINA EL TOKEN DEL LOCAL STORAGE Y EL USUARIO DEL SISTEMA
     LocalStorage.prefs.remove("token");
+    user = null;
 
     ///ACTUALIZA LAS VARIABLES
     authStatus = AuthStatus.notAuthenticated;
