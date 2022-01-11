@@ -30,14 +30,14 @@ class Address {
   String toJson() => json.encode(toMap());
 
   factory Address.fromMap(Map<String, dynamic> json) => Address(
-        id: json["_id"] = "",
-        province: json["province"] = "",
-        municipality: json["municipality"] = "",
-        postalCode: json["postal_code"] = "",
-        street: json["street"] = "",
-        number: json["number"] = "",
-        flour: json["flour"] = "",
-        letter: json["letter"] = "",
+        id: json["_id"] ?? "",
+        province: json["province"] ?? "",
+        municipality: json["municipality"] ?? "",
+        postalCode: json["postal_code"] ?? "",
+        street: json["street"] ?? "",
+        number: json["number"] ?? "",
+        flour: json["flour"] ?? "",
+        letter: json["letter"] ?? "",
         latitude: json["latitude"] ?? "",
         longitude: json["longitude"] ?? "",
       );

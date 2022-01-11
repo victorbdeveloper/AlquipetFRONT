@@ -54,15 +54,6 @@ class Sidebar extends StatelessWidget {
                   },
                   isActive: sideMenuProvider.currentPage == "/",
                 ),
-                // MenuItem(
-                //   text: "TEST",
-                //   onPressed: () {
-                //     if (sideMenuProvider.currentPage != "/anuncio") {
-                //       Get.toNamed("/anuncio");
-                //     }
-                //   },
-                //   isActive: sideMenuProvider.currentPage == "/anuncio",
-                // ),
                 if (authProvider.authStatus == AuthStatus.authenticated)
                   Column(
                     children: <Widget>[

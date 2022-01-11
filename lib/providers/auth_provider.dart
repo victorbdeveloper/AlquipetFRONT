@@ -54,15 +54,13 @@ class AuthProvider extends GetxController {
       final authResponse = AuthResponse.fromMap(
         await AlquipetApi.dioPost("/users/create_user", body: data),
       );
-
       // print("AUTHRESPONSE cU: ${authResponse.toString()}");
-      // Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
+
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
       print(error.toString());
       return ("Email / Nick no válidos");
-      // Get.toNamed("/login"); //TODO: LLEVAR A ESTA RUTA???
     }
     return null;
   }
@@ -110,9 +108,6 @@ class AuthProvider extends GetxController {
       ///OBTIENE LA AUTENTICACIÓN DEL USUARIO
       GoogleSignInAuthentication _googleSignInAuthentication =
           await _googleSignInAccount!.authentication;
-
-      // //TODO: ESTE ID ES EL QUE HAY QUE PASAR AL SERVICIO REST
-      // print("ID: ${_googleSignInAuthentication.idToken}");
 
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(

@@ -14,6 +14,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: "ALQUIPET",
+      scrollable: true,
+
       // logo: const AssetImage("assets/images/ecorp-lightblue.png"),
       hideForgotPasswordButton: true,
       messages: LoginMessages(
@@ -39,8 +41,8 @@ class LoginPage extends StatelessWidget {
           "password": p0.password,
         });
       },
-loginAfterSignUp: false,
-      onSignup: (p0)  {
+      loginAfterSignUp: false,
+      onSignup: (p0) {
         Map<String, String> data = {
           "user_name": p0.additionalSignupData!["nick"]!,
           "name": p0.additionalSignupData!["name"]!,

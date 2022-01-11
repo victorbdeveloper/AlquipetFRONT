@@ -18,19 +18,7 @@ class DashboardLayout extends StatefulWidget {
   _DashboardLayoutState createState() => _DashboardLayoutState();
 }
 
-class _DashboardLayoutState extends State<DashboardLayout>
-    // with SingleTickerProviderStateMixin
-{
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   SideMenuProvider.menuController = AnimationController(
-  //       vsync: this, duration: const Duration(milliseconds: 300));
-  //   SideMenuProvider.menuController.addListener(() => print(
-  //       "Animation Controller value: ${SideMenuProvider.menuController.value}"));
-  // }
-
+class _DashboardLayoutState extends State<DashboardLayout> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SideMenuProvider>(
