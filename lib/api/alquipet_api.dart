@@ -8,7 +8,7 @@ class AlquipetApi {
     //TODO: CAMBIAR AL DESPLEGAR A PRODUCCIÓN
     /// BASE URL
     /// desarrollo - local
-    _dio.options.baseUrl = "http://localhost:8081/api";
+    // _dio.options.baseUrl = "http://localhost:8081/api";
 
     /// desarrollo - heroku
     // _dio.options.baseUrl = "https://alquipet.herokuapp.com/api";
