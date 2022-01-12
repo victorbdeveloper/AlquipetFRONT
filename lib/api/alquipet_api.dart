@@ -14,7 +14,7 @@ class AlquipetApi {
     // _dio.options.baseUrl = "https://alquipet.herokuapp.com/api";
 
     /// producción - heroku + google domains
-    _dio.options.baseUrl = "https://alquipet.com/api";
+    // _dio.options.baseUrl = "https://alquipet.com/api";
 
     /// HEADERS
     _dio.options.headers = {
