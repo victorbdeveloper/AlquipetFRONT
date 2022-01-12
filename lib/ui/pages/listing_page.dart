@@ -202,1045 +202,224 @@ class _ListingPageContentState extends State<_ListingPageContent> {
 
     return Hero(
       tag: listingProvider.listing.uid!,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Flexible(
-            child: Responsive.isDesktop(context)
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      child: Responsive.isDesktop(context)
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ///FOTOS
+                Card(
+                  child: Column(
                     children: <Widget>[
-                      ///FOTOS
-                      Card(
-                        child: Column(children: <Widget>[
-                          CarouselSlider(
-                            items: listingProvider.loadImageList(),
-                            // [
-                            //         FadeInImage.assetNetwork(
-                            //           placeholder: 'loader.gif',
-                            //           image: listingProvider.listing.photos!.first.urlCloudinary!,
-                            //           // width: 1200,
-                            //           // height: 500,
-                            //           fit: BoxFit.fill,
-                            //         ),
-                            //           FadeInImage.assetNetwork(
-                            //             placeholder: 'loader.gif',
-                            //             image: listingProvider.listing.photos!.last.urlCloudinary!,
-                            //             // width: 800,
-                            //             // height: 150,
-                            //             fit: BoxFit.fill,
-                            //           ),
-                            //         ]
-                            // ,
-                            carouselController: listingProvider.buttonCarouselController,
-                            options: CarouselOptions(
-                              autoPlay: false,
-                              enlargeCenterPage: true,
-                              viewportFraction: 0.9,
-                              aspectRatio: 3.0,
-                              initialPage: 2,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () => listingProvider.buttonCarouselController
-                                .nextPage(duration: const Duration(milliseconds: 300), curve: Curves.linear),
-                            child: Text('→'),
-                          )
-                        ]),
-                      ),
-
-                      // Container(
-                      //   color: Colors.green,
-                      //   width: Get.width,
-                      //   height: Get.height / 3,
-                      // ),
-                      // ),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                ///DATOS CONTACTO
-                                Card(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      IntrinsicHeight(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                                          child: Expanded(
-                                            child: Row(
-                                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: <Widget>[
-                                                Flexible(
-                                                  child: Column(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "DATOS DE CONTACTO:",
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 22,
-                                                          decoration: TextDecoration.underline,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 12.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            const Text(
-                                                              "Fecha de publicación:",
-                                                              style: TextStyle(
-                                                                fontStyle: FontStyle.italic,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600,
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 12.0,
-                                                            ),
-                                                            Flexible(
-                                                              child: TextField(
-                                                                decoration: const InputDecoration(
-                                                                  constraints: BoxConstraints(maxHeight: 30),
-                                                                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                                  labelText: "Fecha de publicación",
-                                                                  labelStyle: TextStyle(
-                                                                    fontSize: 13,
-                                                                    fontStyle: FontStyle.italic,
-                                                                    color: Colors.blue,
-                                                                  ),
-                                                                  border: OutlineInputBorder(
-                                                                    borderSide: BorderSide(
-                                                                      color: Colors.blue,
-                                                                    ),
-                                                                  ),
-                                                                  enabledBorder: OutlineInputBorder(
-                                                                    borderSide: BorderSide(
-                                                                      color: Colors.blue,
-                                                                      width: 2.0,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                controller: datePublicationController,
-                                                                readOnly: true,
-                                                                onChanged: (value) => {},
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 12.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            const Text(
-                                                              "Teléfono:",
-                                                              style: TextStyle(
-                                                                fontStyle: FontStyle.italic,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600,
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 12.0,
-                                                            ),
-                                                            Flexible(
-                                                              child: TextField(
-                                                                decoration: const InputDecoration(
-                                                                  constraints: BoxConstraints(maxHeight: 30),
-                                                                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                                  labelText: "Teléfono",
-                                                                  labelStyle: TextStyle(
-                                                                    fontSize: 13,
-                                                                    fontStyle: FontStyle.italic,
-                                                                    color: Colors.blue,
-                                                                  ),
-                                                                  border: OutlineInputBorder(),
-                                                                  enabledBorder: OutlineInputBorder(
-                                                                    borderSide: BorderSide(
-                                                                      color: Colors.blue,
-                                                                      width: 2.0,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                controller: phoneController,
-                                                                readOnly: true,
-                                                                onChanged: (value) => {},
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 12.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            const Text(
-                                                              "Email:",
-                                                              style: TextStyle(
-                                                                fontStyle: FontStyle.italic,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600,
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 12.0,
-                                                            ),
-                                                            Flexible(
-                                                              child: TextField(
-                                                                decoration: const InputDecoration(
-                                                                  constraints: BoxConstraints(maxHeight: 30),
-                                                                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                                  labelText: "Correo electrónico",
-                                                                  labelStyle: TextStyle(
-                                                                    fontSize: 13,
-                                                                    fontStyle: FontStyle.italic,
-                                                                    color: Colors.blue,
-                                                                  ),
-                                                                  border: OutlineInputBorder(
-                                                                    borderSide: BorderSide(
-                                                                      color: Colors.blue,
-                                                                    ),
-                                                                  ),
-                                                                  enabledBorder: OutlineInputBorder(
-                                                                    borderSide: BorderSide(
-                                                                      color: Colors.blue,
-                                                                      width: 2.0,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                controller: emailController,
-                                                                readOnly: true,
-                                                                onChanged: (value) => {},
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 30,
-                                                ),
-                                                Text(
-                                                  "${listingProvider.listing.price.toString()} €",
-                                                  style: const TextStyle(
-                                                    fontStyle: FontStyle.italic,
-                                                    fontSize: 45.0,
-                                                    fontWeight: FontWeight.w900,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                                ///DATOS ANUNCIO
-                                Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        const Text(
-                                          "DATOS DEL ANUNCIO:",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22,
-                                            decoration: TextDecoration.underline,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 12.0,
-                                          ),
-                                          child: ResponsiveGridList(
-                                            minItemWidth: 250,
-                                            shrinkWrap: true,
-                                            children: <Widget>[
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Provincia:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Provincia",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: provinceController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Municipio:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Municipio",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: municipalityController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Código Postal:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Código Postal",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: postalCodeController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Calle:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Calle",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: streetController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Número:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Número",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: numberController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Piso:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Piso",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: flourController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Letra:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12.0,
-                                                  ),
-                                                  Flexible(
-                                                    child: TextField(
-                                                      decoration: const InputDecoration(
-                                                        constraints: BoxConstraints(maxHeight: 30),
-                                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                        labelText: "Letra",
-                                                        labelStyle: TextStyle(
-                                                          fontSize: 13,
-                                                          fontStyle: FontStyle.italic,
-                                                          color: Colors.blue,
-                                                        ),
-                                                        border: OutlineInputBorder(),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                            color: Colors.blue,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      controller: letterController,
-                                                      readOnly: true,
-                                                      onChanged: (value) => {},
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        if (listingProvider.listing.description!.trim().isNotEmpty)
-                                          Row(
-                                            children: <Widget>[
-                                              const Text(
-                                                "Descripción:",
-                                                style: TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 10.0,
-                                              ),
-                                              Flexible(
-                                                child: TextField(
-                                                  decoration: const InputDecoration(
-                                                    floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                    labelText: "Descripción",
-                                                    labelStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontStyle: FontStyle.italic,
-                                                      color: Colors.blue,
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: Colors.blue,
-                                                        width: 2.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  maxLines: null,
-                                                  controller: descriptionController,
-                                                  readOnly: true,
-                                                  onChanged: (value) => {},
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-                                ///MASCOTAS ADMITIDAS
-                                Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        const Text(
-                                          "MASCOTAS ADMITIDAS:",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22,
-                                            decoration: TextDecoration.underline,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 12.0,
-                                          ),
-                                          child: ResponsiveGridList(
-                                            minItemWidth: 120,
-                                            shrinkWrap: true,
-                                            children: <Widget>[
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Perros:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.dogs!,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Gatos:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.cats!,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Pájaros:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.birds!,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Roedores:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.rodents!,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Exóticas:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.exotic!,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  const Text(
-                                                    "Otras:",
-                                                    style: TextStyle(
-                                                      fontStyle: FontStyle.italic,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10.0,
-                                                  ),
-                                                  Checkbox(
-                                                    value: listingProvider.listing.petsAllowed!.others!.isEmpty ? false : true,
-                                                    visualDensity: const VisualDensity(horizontal: -4),
-                                                    onChanged: (_) => {},
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        if (listingProvider.listing.petsAllowed!.others!.trim().isNotEmpty)
-                                          Row(
-                                            children: <Widget>[
-                                              const Text(
-                                                "Otras:",
-                                                style: TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 10.0,
-                                              ),
-                                              Flexible(
-                                                child: TextField(
-                                                  decoration: const InputDecoration(
-                                                    floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                    labelText: "Otras Mascotas",
-                                                    labelStyle: TextStyle(
-                                                      fontSize: 13,
-                                                      fontStyle: FontStyle.italic,
-                                                      color: Colors.blue,
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: Colors.blue,
-                                                        width: 2.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  maxLines: null,
-                                                  controller: othersPetsController,
-                                                  readOnly: true,
-                                                  onChanged: (value) => {},
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-
-                          ///MAPA
-                          Card(
-                            child: Container(
-                              color: Colors.orangeAccent,
-                              width: Get.width / 4,
-                              height: Get.width / 4,
-                              child: const MapListing(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      ///FOTOS
-                      Card(
-                        child: Column(
-                          children: <Widget>[
-                            CarouselSlider(
-                              items: listingProvider.loadImageList(),
-                              // [
-                              //         FadeInImage.assetNetwork(
-                              //           placeholder: 'loader.gif',
-                              //           image: listingProvider.listing.photos!.first.urlCloudinary!,
-                              //           // width: 1200,
-                              //           // height: 500,
-                              //           fit: BoxFit.fill,
-                              //         ),
-                              //           FadeInImage.assetNetwork(
-                              //             placeholder: 'loader.gif',
-                              //             image: listingProvider.listing.photos!.last.urlCloudinary!,
-                              //             // width: 800,
-                              //             // height: 150,
-                              //             fit: BoxFit.fill,
-                              //           ),
-                              //         ]
-                              // ,
-                              carouselController: listingProvider.buttonCarouselController,
-                              options: CarouselOptions(
-                                height: Get.height / 3,
-                                autoPlay: false,
-                                enlargeCenterPage: true,
-                                viewportFraction: 0.9,
-                                aspectRatio: 3.0,
-                                initialPage: 2,
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: () => listingProvider.buttonCarouselController
-                                  .nextPage(duration: const Duration(milliseconds: 300), curve: Curves.linear),
-                              child: const Text('→'),
-                            )
-                          ],
+                      CarouselSlider(
+                        items: listingProvider.loadImageList(),
+                        carouselController: listingProvider.buttonCarouselController,
+                        options: CarouselOptions(
+                          autoPlay: false,
+                          enlargeCenterPage: true,
+                          viewportFraction: 0.9,
+                          aspectRatio: 3.0,
+                          initialPage: 2,
                         ),
                       ),
-
-                      // Container(
-                      //   color: Colors.green,
-                      //   width: Get.width,
-                      //   height: Get.height / 3,
-                      // ),
-                      // ),
-
-                      Column(
+                      ElevatedButton(
+                        onPressed: () => listingProvider.buttonCarouselController
+                            .nextPage(duration: const Duration(milliseconds: 300), curve: Curves.linear),
+                        child: const Text('→'),
+                      )
+                    ],
+                  ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           ///DATOS CONTACTO
                           Card(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                IntrinsicHeight(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                                    child: Expanded(
-                                      child: Row(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Flexible(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                const Text(
-                                                  "DATOS DE CONTACTO:",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 22,
-                                                    decoration: TextDecoration.underline,
-                                                  ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: Row(
+                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Flexible(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              const Text(
+                                                "DATOS DE CONTACTO:",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22,
+                                                  decoration: TextDecoration.underline,
                                                 ),
-                                                const SizedBox(
-                                                  height: 12.0,
-                                                ),
-                                                Flexible(
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "Fecha de publicación:",
-                                                        style: TextStyle(
-                                                          fontStyle: FontStyle.italic,
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
-                                                        ),
+                                              ),
+                                              const SizedBox(
+                                                height: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    const Text(
+                                                      "Fecha de publicación:",
+                                                      style: TextStyle(
+                                                        fontStyle: FontStyle.italic,
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
-                                                      const SizedBox(
-                                                        width: 12.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: TextField(
-                                                          decoration: const InputDecoration(
-                                                            constraints: BoxConstraints(maxHeight: 30),
-                                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                            labelText: "Fecha de publicación",
-                                                            labelStyle: TextStyle(
-                                                              fontSize: 13,
-                                                              fontStyle: FontStyle.italic,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 12.0,
+                                                    ),
+                                                    Flexible(
+                                                      child: TextField(
+                                                        decoration: const InputDecoration(
+                                                          constraints: BoxConstraints(maxHeight: 30),
+                                                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                          labelText: "Fecha de publicación",
+                                                          labelStyle: TextStyle(
+                                                            fontSize: 13,
+                                                            fontStyle: FontStyle.italic,
+                                                            color: Colors.blue,
+                                                          ),
+                                                          border: OutlineInputBorder(
+                                                            borderSide: BorderSide(
                                                               color: Colors.blue,
                                                             ),
-                                                            border: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color: Colors.blue,
-                                                              ),
-                                                            ),
-                                                            enabledBorder: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color: Colors.blue,
-                                                                width: 2.0,
-                                                              ),
+                                                          ),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color: Colors.blue,
+                                                              width: 2.0,
                                                             ),
                                                           ),
-                                                          controller: datePublicationController,
-                                                          readOnly: true,
-                                                          onChanged: (value) => {},
                                                         ),
+                                                        controller: datePublicationController,
+                                                        readOnly: true,
+                                                        onChanged: (value) => {},
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  height: 12.0,
-                                                ),
-                                                Flexible(
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "Teléfono:",
-                                                        style: TextStyle(
-                                                          fontStyle: FontStyle.italic,
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
+                                              ),
+                                              const SizedBox(
+                                                height: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    const Text(
+                                                      "Teléfono:",
+                                                      style: TextStyle(
+                                                        fontStyle: FontStyle.italic,
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 12.0,
+                                                    ),
+                                                    Flexible(
+                                                      child: TextField(
+                                                        decoration: const InputDecoration(
+                                                          constraints: BoxConstraints(maxHeight: 30),
+                                                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                          labelText: "Teléfono",
+                                                          labelStyle: TextStyle(
+                                                            fontSize: 13,
+                                                            fontStyle: FontStyle.italic,
+                                                            color: Colors.blue,
+                                                          ),
+                                                          border: OutlineInputBorder(),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color: Colors.blue,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
                                                         ),
+                                                        controller: phoneController,
+                                                        readOnly: true,
+                                                        onChanged: (value) => {},
                                                       ),
-                                                      const SizedBox(
-                                                        width: 12.0,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    const Text(
+                                                      "Email:",
+                                                      style: TextStyle(
+                                                        fontStyle: FontStyle.italic,
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
-                                                      Flexible(
-                                                        child: TextField(
-                                                          decoration: const InputDecoration(
-                                                            constraints: BoxConstraints(maxHeight: 30),
-                                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                            labelText: "Teléfono",
-                                                            labelStyle: TextStyle(
-                                                              fontSize: 13,
-                                                              fontStyle: FontStyle.italic,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 12.0,
+                                                    ),
+                                                    Flexible(
+                                                      child: TextField(
+                                                        decoration: const InputDecoration(
+                                                          constraints: BoxConstraints(maxHeight: 30),
+                                                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                          labelText: "Correo electrónico",
+                                                          labelStyle: TextStyle(
+                                                            fontSize: 13,
+                                                            fontStyle: FontStyle.italic,
+                                                            color: Colors.blue,
+                                                          ),
+                                                          border: OutlineInputBorder(
+                                                            borderSide: BorderSide(
                                                               color: Colors.blue,
                                                             ),
-                                                            border: OutlineInputBorder(),
-                                                            enabledBorder: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color: Colors.blue,
-                                                                width: 2.0,
-                                                              ),
-                                                            ),
                                                           ),
-                                                          controller: phoneController,
-                                                          readOnly: true,
-                                                          onChanged: (value) => {},
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 12.0,
-                                                ),
-                                                Flexible(
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      const Text(
-                                                        "Email:",
-                                                        style: TextStyle(
-                                                          fontStyle: FontStyle.italic,
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 12.0,
-                                                      ),
-                                                      Flexible(
-                                                        child: TextField(
-                                                          decoration: const InputDecoration(
-                                                            constraints: BoxConstraints(maxHeight: 30),
-                                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                                            labelText: "Correo electrónico",
-                                                            labelStyle: TextStyle(
-                                                              fontSize: 13,
-                                                              fontStyle: FontStyle.italic,
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(
                                                               color: Colors.blue,
-                                                            ),
-                                                            border: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color: Colors.blue,
-                                                              ),
-                                                            ),
-                                                            enabledBorder: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color: Colors.blue,
-                                                                width: 2.0,
-                                                              ),
+                                                              width: 2.0,
                                                             ),
                                                           ),
-                                                          controller: emailController,
-                                                          readOnly: true,
-                                                          onChanged: (value) => {},
                                                         ),
+                                                        controller: emailController,
+                                                        readOnly: true,
+                                                        onChanged: (value) => {},
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(
-                                            width: 30,
+                                        ),
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        Text(
+                                          "${listingProvider.listing.price.toString()} €",
+                                          style: const TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 45.0,
+                                            fontWeight: FontWeight.w900,
                                           ),
-                                          Text(
-                                            "${listingProvider.listing.price.toString()} €",
-                                            style: const TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 45.0,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
 
@@ -1780,24 +959,816 @@ class _ListingPageContentState extends State<_ListingPageContent> {
                           )
                         ],
                       ),
+                    ),
 
-                      ///MAPA
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Center(
-                            child: Container(
-                              color: Colors.orangeAccent,
-                              width: 300,
-                              height: 300,
-                              child: const MapListing(),
-                            ),
-                          ),
+                    ///MAPA
+                    Card(
+                      child: Container(
+                        color: Colors.orangeAccent,
+                        width: Get.width / 4,
+                        height: Get.width / 4,
+                        child: const MapListing(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ///FOTOS
+                Card(
+                  child: Column(
+                    children: <Widget>[
+                      CarouselSlider(
+                        items: listingProvider.loadImageList(),
+                        // [
+                        //         FadeInImage.assetNetwork(
+                        //           placeholder: 'loader.gif',
+                        //           image: listingProvider.listing.photos!.first.urlCloudinary!,
+                        //           // width: 1200,
+                        //           // height: 500,
+                        //           fit: BoxFit.fill,
+                        //         ),
+                        //           FadeInImage.assetNetwork(
+                        //             placeholder: 'loader.gif',
+                        //             image: listingProvider.listing.photos!.last.urlCloudinary!,
+                        //             // width: 800,
+                        //             // height: 150,
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ]
+                        // ,
+                        carouselController: listingProvider.buttonCarouselController,
+                        options: CarouselOptions(
+                          height: Get.height / 3,
+                          autoPlay: false,
+                          enlargeCenterPage: true,
+                          viewportFraction: 0.9,
+                          aspectRatio: 3.0,
+                          initialPage: 2,
                         ),
                       ),
+                      ElevatedButton(
+                        onPressed: () => listingProvider.buttonCarouselController
+                            .nextPage(duration: const Duration(milliseconds: 300), curve: Curves.linear),
+                        child: const Text('→'),
+                      )
                     ],
-                  )),
-      ),
+                  ),
+                ),
+
+                // Container(
+                //   color: Colors.green,
+                //   width: Get.width,
+                //   height: Get.height / 3,
+                // ),
+                // ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ///DATOS CONTACTO
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Flexible(
+                              child: Row(
+                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        const Text(
+                                          "DATOS DE CONTACTO:",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 12.0,
+                                        ),
+                                        Flexible(
+                                          child: Row(
+                                            children: <Widget>[
+                                              const Text(
+                                                "Fecha de publicación:",
+                                                style: TextStyle(
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: TextField(
+                                                  decoration: const InputDecoration(
+                                                    constraints: BoxConstraints(maxHeight: 30),
+                                                    floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                    labelText: "Fecha de publicación",
+                                                    labelStyle: TextStyle(
+                                                      fontSize: 13,
+                                                      fontStyle: FontStyle.italic,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    border: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: Colors.blue,
+                                                      ),
+                                                    ),
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: Colors.blue,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  controller: datePublicationController,
+                                                  readOnly: true,
+                                                  onChanged: (value) => {},
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 12.0,
+                                        ),
+                                        Flexible(
+                                          child: Row(
+                                            children: <Widget>[
+                                              const Text(
+                                                "Teléfono:",
+                                                style: TextStyle(
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: TextField(
+                                                  decoration: const InputDecoration(
+                                                    constraints: BoxConstraints(maxHeight: 30),
+                                                    floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                    labelText: "Teléfono",
+                                                    labelStyle: TextStyle(
+                                                      fontSize: 13,
+                                                      fontStyle: FontStyle.italic,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    border: OutlineInputBorder(),
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: Colors.blue,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  controller: phoneController,
+                                                  readOnly: true,
+                                                  onChanged: (value) => {},
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 12.0,
+                                        ),
+                                        Flexible(
+                                          child: Row(
+                                            children: <Widget>[
+                                              const Text(
+                                                "Email:",
+                                                style: TextStyle(
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 12.0,
+                                              ),
+                                              Flexible(
+                                                child: TextField(
+                                                  decoration: const InputDecoration(
+                                                    constraints: BoxConstraints(maxHeight: 30),
+                                                    floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                                    labelText: "Correo electrónico",
+                                                    labelStyle: TextStyle(
+                                                      fontSize: 13,
+                                                      fontStyle: FontStyle.italic,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    border: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: Colors.blue,
+                                                      ),
+                                                    ),
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: Colors.blue,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  controller: emailController,
+                                                  readOnly: true,
+                                                  onChanged: (value) => {},
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text(
+                                    "${listingProvider.listing.price.toString()} €",
+                                    style: const TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 45.0,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    ///DATOS ANUNCIO
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Text(
+                              "DATOS DEL ANUNCIO:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12.0,
+                              ),
+                              child: ResponsiveGridList(
+                                minItemWidth: 250,
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Provincia:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Provincia",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: provinceController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Municipio:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Municipio",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: municipalityController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Código Postal:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Código Postal",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: postalCodeController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Calle:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Calle",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: streetController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Número:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Número",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: numberController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Piso:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Piso",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: flourController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Letra:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12.0,
+                                      ),
+                                      Flexible(
+                                        child: TextField(
+                                          decoration: const InputDecoration(
+                                            constraints: BoxConstraints(maxHeight: 30),
+                                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                            labelText: "Letra",
+                                            labelStyle: TextStyle(
+                                              fontSize: 13,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.blue,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                          ),
+                                          controller: letterController,
+                                          readOnly: true,
+                                          onChanged: (value) => {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (listingProvider.listing.description!.trim().isNotEmpty)
+                              Row(
+                                children: <Widget>[
+                                  const Text(
+                                    "Descripción:",
+                                    style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                        labelText: "Descripción",
+                                        labelStyle: TextStyle(
+                                          fontSize: 13,
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.blue,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.blue,
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                      ),
+                                      maxLines: null,
+                                      controller: descriptionController,
+                                      readOnly: true,
+                                      onChanged: (value) => {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    ///MASCOTAS ADMITIDAS
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Text(
+                              "MASCOTAS ADMITIDAS:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12.0,
+                              ),
+                              child: ResponsiveGridList(
+                                minItemWidth: 120,
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Perros:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.dogs!,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Gatos:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.cats!,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Pájaros:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.birds!,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Roedores:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.rodents!,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Exóticas:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.exotic!,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      const Text(
+                                        "Otras:",
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Checkbox(
+                                        value: listingProvider.listing.petsAllowed!.others!.isEmpty ? false : true,
+                                        visualDensity: const VisualDensity(horizontal: -4),
+                                        onChanged: (_) => {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (listingProvider.listing.petsAllowed!.others!.trim().isNotEmpty)
+                              Row(
+                                children: <Widget>[
+                                  const Text(
+                                    "Otras:",
+                                    style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                        floatingLabelBehavior: FloatingLabelBehavior.auto,
+                                        labelText: "Otras Mascotas",
+                                        labelStyle: TextStyle(
+                                          fontSize: 13,
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.blue,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.blue,
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                      ),
+                                      maxLines: null,
+                                      controller: othersPetsController,
+                                      readOnly: true,
+                                      onChanged: (value) => {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+
+                ///MAPA
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Container(
+                        color: Colors.orangeAccent,
+                        width: 300,
+                        height: 300,
+                        child: const MapListing(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }
