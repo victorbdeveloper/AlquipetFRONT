@@ -1,9 +1,9 @@
-import 'package:alquipet_front/providers/auth_provider.dart';
-import 'package:alquipet_front/validators/login_validators.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_login/flutter_login.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:get/get.dart';
+import "package:alquipet_front/providers/auth_provider.dart";
+import "package:alquipet_front/validators/login_validators.dart";
+import "package:flutter/material.dart";
+import "package:flutter_login/flutter_login.dart";
+import "package:flutter_signin_button/button_list.dart";
+import "package:get/get.dart";
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -13,8 +13,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'ALQUIPET',
-      // logo: const AssetImage('assets/images/ecorp-lightblue.png'),
+      title: "ALQUIPET",
+      scrollable: true,
+
+      // logo: const AssetImage("assets/images/ecorp-lightblue.png"),
       hideForgotPasswordButton: true,
       messages: LoginMessages(
         additionalSignUpFormDescription:
@@ -33,13 +35,14 @@ class LoginPage extends StatelessWidget {
         additionalSignUpSubmitButton: "ACEPTAR",
         flushbarTitleSuccess: "CONFIRMADO",
       ),
-      onLogin: (p0) async {
-        await authProvider.loginEmail({
+      onLogin: (p0) {
+        return authProvider.loginEmail({
           "email": p0.name,
           "password": p0.password,
         });
       },
-      onSignup: (p0) async {
+      loginAfterSignUp: false,
+      onSignup: (p0) {
         Map<String, String> data = {
           "user_name": p0.additionalSignupData!["nick"]!,
           "name": p0.additionalSignupData!["name"]!,
@@ -48,33 +51,33 @@ class LoginPage extends StatelessWidget {
           "password": p0.password!,
           "phone": p0.additionalSignupData!["phone"]!,
         };
-        debugPrint("DATOS: $data");
-        await authProvider.createUser(data);
+        // print("DATOS: $data");
+        return authProvider.createUser(data);
       },
       additionalSignupFields: const <UserFormField>[
         UserFormField(
           fieldValidator: LoginValidators.fieldEmptyValidator,
-          keyName: 'nick',
+          keyName: "nick",
           displayName: "Nick usuario",
           icon: Icon(Icons.animation),
           userType: LoginUserType.name,
         ),
         UserFormField(
-          keyName: 'name',
+          keyName: "name",
           fieldValidator: LoginValidators.fieldEmptyValidator,
           displayName: "Nombre",
           icon: Icon(Icons.account_circle),
           userType: LoginUserType.name,
         ),
         UserFormField(
-          keyName: 'lastName',
+          keyName: "lastName",
           fieldValidator: LoginValidators.fieldEmptyValidator,
           displayName: "Apellidos",
           icon: Icon(Icons.account_circle),
           userType: LoginUserType.name,
         ),
         UserFormField(
-          keyName: 'phone',
+          keyName: "phone",
           fieldValidator: LoginValidators.phoneValidator,
           displayName: "Teléfono",
           icon: Icon(Icons.phone),
@@ -84,16 +87,17 @@ class LoginPage extends StatelessWidget {
       loginProviders: <LoginProvider>[
         LoginProvider(
           button: Buttons.GoogleDark,
-          label: 'Google',
-          callback: () async {
-            await authProvider.handleSignIn();
+          label: "Google",
+          callback: () {
+            return authProvider.handleSignIn();
           },
         ),
       ],
       disableCustomPageTransformer: true,
-      onSubmitAnimationCompleted: (_) {
-        Get.toNamed("/inicio");
+      onSubmitAnimationCompleted: () {
+        Get.offNamed("/");
       },
+
       onRecoverPassword: (_) {},
     );
   }

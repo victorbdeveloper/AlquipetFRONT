@@ -1,27 +1,27 @@
-import 'dart:convert';
+import "dart:convert";
 
 class User {
   User({
-    required this.userName,
-    required this.name,
-    required this.lastName,
-    required this.email,
-    required this.phone,
-    required this.google,
-    required this.state,
-    required this.favoriteListings,
-    required this.uid,
+    this.userName,
+    this.name,
+    this.lastName,
+    this.email,
+    this.phone,
+    this.google,
+    this.state,
+    this.favoriteListings,
+    this.uid,
   });
 
-  String userName;
-  String name;
-  String lastName;
-  String email;
-  String phone;
-  bool google;
-  bool state;
-  List<String> favoriteListings;
-  String uid;
+  String? userName = "";
+  String? name = "";
+  String? lastName = "";
+  String? email = "";
+  String? phone = "";
+  bool? google;
+  bool? state;
+  List<String>? favoriteListings = <String>[];
+  String? uid;
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
 
@@ -35,9 +35,10 @@ class User {
         phone: json["phone"],
         google: json["google"],
         state: json["state"],
-        favoriteListings:
-            List<String>.from(json["favorite_listings"].map((x) => x)),
-        uid: json["uid"],
+        favoriteListings: json["favorite_listings"] == null
+            ? null
+            : List<String>.from(json["favorite_listings"].map((x) => x)),
+        uid: json["uid"] ?? json["_id"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -48,7 +49,14 @@ class User {
         "phone": phone,
         "google": google,
         "state": state,
-        "favorite_listings": List<dynamic>.from(favoriteListings.map((x) => x)),
+        "favorite_listings": favoriteListings == null
+            ? null
+            : List<dynamic>.from(favoriteListings!.map((x) => x)),
         "uid": uid,
       };
+
+  @override
+  String toString() {
+    return "User{userName: $userName, name: $name, lastName: $lastName, email: $email, phone: $phone, google: $google, state: $state, favoriteListings: $favoriteListings, uid: $uid}";
+  }
 }

@@ -1,11 +1,11 @@
-import 'package:alquipet_front/api/alquipet_api.dart';
-import 'package:alquipet_front/models/http/auth_response.dart';
-import 'package:alquipet_front/models/user.dart';
-import 'package:alquipet_front/services/local_storage.dart';
-import 'package:alquipet_front/services/notifications_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import "package:alquipet_front/api/alquipet_api.dart";
+import "package:alquipet_front/models/http/auth_response.dart";
+import "package:alquipet_front/models/user.dart";
+import "package:alquipet_front/providers/side_menu_provider.dart";
+import "package:alquipet_front/services/local_storage.dart";
+import "package:alquipet_front/services/notifications_service.dart";
+import "package:get/get.dart";
+import "package:google_sign_in/google_sign_in.dart";
 
 enum AuthStatus { checking, authenticated, notAuthenticated }
 enum AuthType { notYet, email, google }
@@ -23,7 +23,7 @@ class AuthProvider extends GetxController {
   //
   // /// COMPRUEBA SI EL USUARIO ESTA AUTENTICADO
   // Future<bool> isAuthenticated() async {
-  //   final token = LocalStorage.prefs.getString('token');
+  //   final token = LocalStorage.prefs.getString("token");
   //
   //   if (token == null) {
   //     authStatus = AuthStatus.notAuthenticated;
@@ -39,7 +39,7 @@ class AuthProvider extends GetxController {
   //
   //     return true;
   //   } catch (e) {
-  //     debugPrint(e.toString());
+  //     print(e.toString());
   //     authStatus = AuthStatus.notAuthenticated;
   //     authType = AuthType.notYet;
   //     // notifyListeners();
@@ -48,34 +48,33 @@ class AuthProvider extends GetxController {
   // }
 
   ///CREAR NUEVO USUARIO
-  Future<void> createUser(Map<String, String> data) async {
+  Future<String?> createUser(Map<String, String> data) async {
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/users/create_user', body: data),
+        await AlquipetApi.dioPost("/users/create_user", body: data),
       );
+      // print("AUTHRESPONSE cU: ${authResponse.toString()}");
 
-      debugPrint("AUTHRESPONSE cU: ${authResponse.toString()}");
-      Get.toNamed("/login");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
-      NotificationsService.showSnackBarError('Email / Nick no válidos');
-      Get.toNamed("/login");
+      print(error.toString());
+      return ("Email / Nick no válidos");
     }
+    return null;
   }
 
   /// LOGIN EMAIL
-  Future<void> loginEmail(Map<String, String> data) async {
-    debugPrint("DATA: ${data.toString()}");
+  Future<String?> loginEmail(Map<String, String> data) async {
+    // print("DATA: ${data.toString()}");
 
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/auth/login_email', body: data),
+        await AlquipetApi.dioPost("/auth/login_email", body: data),
       );
-      debugPrint("AUTHRESPONSE lE: ${authResponse.toString()}");
+      // print("AUTHRESPONSE lE: ${authResponse.toString()}");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -83,24 +82,20 @@ class AuthProvider extends GetxController {
       authType = AuthType.email;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token);
+      LocalStorage.prefs.setString("token", authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
 
-      ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      // setState(() {});
-
-      ///MUESTRA MENSAJE Y REDIRIGE A INICIO
-      NotificationsService.showSnackBar('Login correcto. Bienvenido!');
-      Get.toNamed("/inicio");
+      ///MUESTRA MENSAJE
+      NotificationsService.showSnackBar("Login correcto. Bienvenido!");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
-      NotificationsService.showSnackBarError('Email / Contraseña no válidos');
-      Get.toNamed("/login");
+      print("ERROR: ${error.toString()}");
+      return "Email / Contraseña no válidos";
     }
+    return null;
   }
 
   ///LOGIN GOOGLE
@@ -108,21 +103,18 @@ class AuthProvider extends GetxController {
     try {
       ///INTENTA INICIAR SESIÓN CON GOOGLE SOLO SI NO ESTA INICIADA YA LA SESIÓN
       _googleSignInAccount = await _googleSignIn.signIn();
-      debugPrint("CURRENT USER: ${_googleSignIn.currentUser}");
+      // print("CURRENT USER: ${_googleSignIn.currentUser}");
 
       ///OBTIENE LA AUTENTICACIÓN DEL USUARIO
       GoogleSignInAuthentication _googleSignInAuthentication =
           await _googleSignInAccount!.authentication;
 
-      //TODO: ESTE ID ES EL QUE HAY QUE PASAR AL SERVICIO REST
-      debugPrint("ID: ${_googleSignInAuthentication.idToken}");
-
       ///REALIZA LA PETICIÓN AL SERVIDOR
       final authResponse = AuthResponse.fromMap(
-        await AlquipetApi.dioPost('/auth/login_google',
+        await AlquipetApi.dioPost("/auth/login_google",
             body: {"id_token": _googleSignInAuthentication.idToken}),
       );
-      debugPrint("AUTHRESPONSE hSI: $authResponse");
+      // print("AUTHRESPONSE hSI: $authResponse");
 
       ///ACTUALIZA LAS VARIABLES
       user = authResponse.user;
@@ -130,24 +122,18 @@ class AuthProvider extends GetxController {
       authType = AuthType.google;
 
       ///GUARDA EN EL LOCALSTORAGE EL TOKEN RECIBIDO
-      LocalStorage.prefs.setString('token', authResponse.token);
+      LocalStorage.prefs.setString("token", authResponse.token!);
 
       ///ACTUALIZA LA CONFIGURACIÓN DE DIO CON EL NUEVO TOKEN
       AlquipetApi.configureDio();
 
-      ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
-      // setState(() {});
-
-      ///MUESTRA MENSAJE Y REDIRIGE A INICIO
-      NotificationsService.showSnackBar('Login correcto. Bienvenido!');
-      Get.toNamed("/inicio");
+      ///MUESTRA MENSAJE
+      NotificationsService.showSnackBar("Login correcto. Bienvenido!");
     } catch (error) {
       authStatus = AuthStatus.notAuthenticated;
       authType = AuthType.notYet;
-      debugPrint(error.toString());
-      NotificationsService.showSnackBarError(
-          'Error al iniciar sesión con Google');
-      Get.toNamed("/login");
+      print(error.toString());
+      return "No se ha podido iniciar sesión en Google";
     }
 
     return null;
@@ -159,14 +145,29 @@ class AuthProvider extends GetxController {
       try {
         ///CIERRA LA SESIÓN DE GOOGLE DEL USUARIO
         _googleSignInAccount = await _googleSignIn.disconnect();
-        debugPrint("CURRENT USER ${_googleSignIn.currentUser}");
+        // print("CURRENT USER ${_googleSignIn.currentUser}");
       } catch (error) {
-        debugPrint(error.toString());
+        print(error.toString());
       }
     }
-    LocalStorage.prefs.remove('token');
+
+    ///ELIMINA EL TOKEN DEL LOCAL STORAGE Y EL USUARIO DEL SISTEMA
+    LocalStorage.prefs.remove("token");
+    user = null;
+
+    ///ACTUALIZA LAS VARIABLES
     authStatus = AuthStatus.notAuthenticated;
-    // notifyListeners();
-    NotificationsService.showSnackBarLogout('Sesión cerrada con éxito');
+    authType = AuthType.notYet;
+
+    ///NOTIFICA A LOS PROVIDERS CORRESPONDIENTES
+    final SideMenuProvider sideMenuProvider = Get.find<SideMenuProvider>();
+    sideMenuProvider.update();
+    update();
+
+    ///MUESTRA MENSAJE
+    NotificationsService.showSnackBarLogout("Sesión cerrada con éxito");
+
+    ///REDIRIGE A INICIO Y BORRA EL HISTORIAL DE RUTAS
+    Get.offAllNamed("/");
   }
 }

@@ -1,44 +1,58 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-//TODO: ELIMINAR AL ACABAR SI NO HAN HECHO FALTA!!
-class CustomIconButton extends StatelessWidget {
+class CustomIconButton extends StatefulWidget {
+  const CustomIconButton(this.onPressed, this.icon, this.isEnabled, this.size,
+      {this.colorEnabled,
+      this.colorDisabled,
+      // this.text,
+      // this.colorTextEnabled,
+      // this.colorTextDisabled,
+      Key? key})
+      : super(key: key);
+
   final Function onPressed;
-  final String text;
-  final Color color;
-  final bool isFilled;
-  final IconData icon;
+  final Icon icon;
+  final bool isEnabled;
+  final double size;
+  final Color? colorEnabled;
+  final Color? colorDisabled;
 
-  const CustomIconButton({
-    Key? key,
-    required this.onPressed,
-    required this.text,
-    required this.icon,
-    this.color = Colors.indigo,
-    this.isFilled = false,
-  }) : super(key: key);
 
   @override
+  State<CustomIconButton> createState() => _CustomIconButtonState();
+}
+
+class _CustomIconButtonState extends State<CustomIconButton> {
+  @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(const StadiumBorder()),
-        backgroundColor: MaterialStateProperty.all(
-          color.withOpacity(0.5),
-        ),
-        overlayColor: MaterialStateProperty.all(
-          color.withOpacity(0.3),
-        ),
-      ),
-      onPressed: () => onPressed(),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.white),
-          Text(
-            text,
-            style: const TextStyle(color: Colors.white),
-          )
-        ],
-      ),
+    return IconButton(
+      onPressed: widget.isEnabled ? widget.onPressed() : null,
+      icon: widget.icon,
+      color:  widget.colorEnabled,
+      disabledColor: widget.colorDisabled,
+
     );
+    //
+    // OutlinedButton(
+    //   style: ButtonStyle(
+    //     shape: MaterialStateProperty.all(const StadiumBorder()),
+    //     backgroundColor: MaterialStateProperty.all(
+    //       color.withOpacity(0.5),
+    //     ),
+    //     overlayColor: MaterialStateProperty.all(
+    //       color.withOpacity(0.3),
+    //     ),
+    //   ),
+    //   onPressed: () => onPressed(),
+    //   child: Row(
+    //     children: [
+    //       Icon(icon, color: Colors.white),
+    //       Text(
+    //         text,
+    //         style: const TextStyle(color: Colors.white),
+    //       )
+    //     ],
+    //   ),
+    // );
   }
 }
