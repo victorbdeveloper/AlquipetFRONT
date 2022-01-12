@@ -39,7 +39,8 @@ class _DashboardLayoutState extends State<DashboardLayout> {
                         const Navbar(),
                         Expanded(
                           child: SizedBox(
-                            width: double.infinity,
+                            // width: double.infinity,
+                            width: double.maxFinite,
                             child: widget.child,
                           ),
                         ),

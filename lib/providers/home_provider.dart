@@ -37,19 +37,35 @@ class HomeProvider extends GetxController {
       "price_min": priceMin ?? 1,
       "price_max": priceMax ?? 999999,
       "province": province,
-      "dogs": dogs,
-      "cats": cats,
-      "birds": birds,
-      "rodents": rodents,
-      "exotic": exotic,
-      "others": others,
+      // "dogs": dogs,
+      // "cats": cats,
+      // "birds": birds,
+      // "rodents": rodents,
+      // "exotic": exotic,
+      // "others": others,
       "order_by": orderBy,
       "index_from": indexFrom,
       "index_limit": indexLimit
     };
+    if (dogs) {
+      queryParameters["dogs"] = dogs;
+    }
+    if (cats) {
+      queryParameters["cats"] = cats;
+    }
+    if (birds) {
+      queryParameters["birds"] = birds;
+    }
+    if (rodents) {
+      queryParameters["rodents"] = rodents;
+    }
+    if (exotic) {
+      queryParameters["exotic"] = exotic;
+    }
+    if (others) {
+      queryParameters["others"] = others;
+    }
 
-    print("indexFrom $indexFrom");
-    print("indexLimit $indexLimit");
 
     // ///DEFINIR BODY/DATA
     // // final data = {"email": "test01@test.com", "password": "123456"};
@@ -64,14 +80,15 @@ class HomeProvider extends GetxController {
 
       ///MAPEAR RESPUESTA
       filteredListingsResponse = FilteredListingsResponse.fromMap(response);
-      print(
-          "anuncios mostrados: ${filteredListingsResponse.anunciosMostrados}");
-      print(
-          "anuncios.length: ${filteredListingsResponse.results!.length.toString()}");
-      print(
-          "indice primer anuncio: ${filteredListingsResponse.indiceDelPrimerAnuncioMostrado}");
-      print(
-          "indice ultimo anuncio: ${filteredListingsResponse.indiceDelUltimoAnuncioMostrado}");
+      // print(
+      //     "anuncios mostrados: ${filteredListingsResponse.anunciosMostrados}");
+      // print(
+      //     "anuncios.length: ${filteredListingsResponse.results!.length.toString()}");
+      // print(
+      //     "indice primer anuncio: ${filteredListingsResponse.indiceDelPrimerAnuncioMostrado}");
+      // print(
+      //     "indice ultimo anuncio: ${filteredListingsResponse.indiceDelUltimoAnuncioMostrado}");
+      // print(filteredListingsResponse);
 
       ///ACTUALIZAR VARIABLES
       calculateTotalPages();
@@ -98,14 +115,10 @@ class HomeProvider extends GetxController {
   /// Función que calcula el total de páginas que ocuparán los resultados obtenidos
   ///
   void calculateTotalPages() {
-    if (filteredListingsResponse.totalAnunciosEncontradosAplicandoLosFiltros! ==
-        0) {
+    if (filteredListingsResponse.totalAnunciosEncontradosAplicandoLosFiltros! == 0) {
       totalPages = 1;
     } else {
-      totalPages = (filteredListingsResponse
-                  .totalAnunciosEncontradosAplicandoLosFiltros! /
-              numberResultsShowed)
-          .ceil();
+      totalPages = (filteredListingsResponse.totalAnunciosEncontradosAplicandoLosFiltros! / numberResultsShowed).ceil();
     }
   }
 

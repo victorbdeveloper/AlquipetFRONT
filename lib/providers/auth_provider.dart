@@ -67,7 +67,7 @@ class AuthProvider extends GetxController {
 
   /// LOGIN EMAIL
   Future<String?> loginEmail(Map<String, String> data) async {
-    print("DATA: ${data.toString()}");
+    // print("DATA: ${data.toString()}");
 
     try {
       ///REALIZA LA PETICIÓN AL SERVIDOR
@@ -145,7 +145,7 @@ class AuthProvider extends GetxController {
       try {
         ///CIERRA LA SESIÓN DE GOOGLE DEL USUARIO
         _googleSignInAccount = await _googleSignIn.disconnect();
-        print("CURRENT USER ${_googleSignIn.currentUser}");
+        // print("CURRENT USER ${_googleSignIn.currentUser}");
       } catch (error) {
         print(error.toString());
       }

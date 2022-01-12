@@ -13,9 +13,9 @@ class SideMenuProvider extends GetxController
     super.onInit();
     SideMenuProvider.menuController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
-    //TODO: ELIMINAR EL ADD LISTENER AL ACABAR!
-    SideMenuProvider.menuController.addListener(() => print(
-        "Animation Controller value: ${SideMenuProvider.menuController.value}"));
+    // //TODO: ELIMINAR EL ADD LISTENER AL ACABAR!
+    // SideMenuProvider.menuController.addListener(() => print(
+    //     "Animation Controller value: ${SideMenuProvider.menuController.value}"));
   }
 
   String get currentPage {

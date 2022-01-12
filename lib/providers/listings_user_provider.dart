@@ -40,18 +40,36 @@ class ListingsUserProvider extends GetxController {
       "price_min": priceMin ?? 1,
       "price_max": priceMax ?? 999999,
       "province": province,
-      "dogs": dogs,
-      "cats": cats,
-      "birds": birds,
-      "rodents": rodents,
-      "exotic": exotic,
-      "others": others,
+      // "dogs": dogs,
+      // "cats": cats,
+      // "birds": birds,
+      // "rodents": rodents,
+      // "exotic": exotic,
+      // "others": others,
       "order_by": orderBy,
       "index_from": indexFrom,
       "index_limit": indexLimit
     };
+    if (dogs) {
+      queryParameters["dogs"] = dogs;
+    }
+    if (cats) {
+      queryParameters["cats"] = cats;
+    }
+    if (birds) {
+      queryParameters["birds"] = birds;
+    }
+    if (rodents) {
+      queryParameters["rodents"] = rodents;
+    }
+    if (exotic) {
+      queryParameters["exotic"] = exotic;
+    }
+    if (others) {
+      queryParameters["others"] = others;
+    }
 
-    print(authProvider.user!.uid);
+    // print(authProvider.user!.uid);
 
     ///REALIZAR PETICIÓN
     try {

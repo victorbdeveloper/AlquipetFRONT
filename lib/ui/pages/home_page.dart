@@ -136,7 +136,6 @@ class __HomePageContentState extends State<_HomePageContent> {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<HomeProvider>(
         init: HomeProvider(),
         id: "homePageContent",
@@ -168,23 +167,16 @@ class __HomePageContentState extends State<_HomePageContent> {
                                       children: <Widget>[
                                         ///PAGINACIÓN
                                         const Padding(
-                                          padding:
-                                              EdgeInsets.only(bottom: 10.0),
-                                          //TODO: PONER EL PAGINATED CONTROL QUE CORRESPONDA
+                                          padding: EdgeInsets.only(bottom: 10.0),
                                           child: HomePaginatedControl(),
                                         ),
 
-                                        homeProvider.filteredListingsResponse
-                                                .results!.isEmpty
+                                        homeProvider.filteredListingsResponse.results!.isEmpty
                                             ? const Flexible(
                                                 child: Center(
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 40,
-                                                            horizontal: 18.0),
-                                                    child: Text(
-                                                        "Ningún resultado obtenido"),
+                                                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 18.0),
+                                                    child: Text("Ningún resultado obtenido"),
                                                   ),
                                                 ),
                                               )
@@ -195,47 +187,23 @@ class __HomePageContentState extends State<_HomePageContent> {
                                                 ? Flexible(
                                                     child: ListView.builder(
                                                       shrinkWrap: true,
-                                                      physics:
-                                                          const ClampingScrollPhysics(),
-                                                      itemCount: homeProvider
-                                                          .filteredListingsResponse
-                                                          .results!
-                                                          .length,
-                                                      itemBuilder:
-                                                          (context, index) {
+                                                      physics: const ClampingScrollPhysics(),
+                                                      itemCount: homeProvider.filteredListingsResponse.results!.length,
+                                                      itemBuilder: (context, index) {
                                                         return Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical:
-                                                                      10.0),
-                                                          child:
-                                                              GestureDetector(
+                                                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                                                          child: GestureDetector(
                                                             onTapUp: (details) {
-                                                              Get.toNamed(
-                                                                  "/anuncio",
+                                                              Get.toNamed("/anuncio",
                                                                   parameters: {
-                                                                    "id": homeProvider
-                                                                        .filteredListingsResponse
-                                                                        .results![
-                                                                            index]
-                                                                        .uid!
+                                                                    "id": homeProvider.filteredListingsResponse.results![index].uid!
                                                                   },
-                                                                  arguments: homeProvider
-                                                                      .filteredListingsResponse
-                                                                      .results![index]);
+                                                                  arguments: homeProvider.filteredListingsResponse.results![index]);
                                                             },
                                                             child: Hero(
-                                                              tag: homeProvider
-                                                                  .filteredListingsResponse
-                                                                  .results![
-                                                                      index]
-                                                                  .uid!,
-                                                              child:
-                                                                  ListingBigCard(
-                                                                listing: homeProvider
-                                                                    .filteredListingsResponse
-                                                                    .results![index],
+                                                              tag: homeProvider.filteredListingsResponse.results![index].uid!,
+                                                              child: ListingBigCard(
+                                                                listing: homeProvider.filteredListingsResponse.results![index],
                                                               ),
                                                             ),
                                                           ),
@@ -248,36 +216,19 @@ class __HomePageContentState extends State<_HomePageContent> {
                                                       shrinkWrap: true,
                                                       minItemWidth: 200,
                                                       children: List.generate(
-                                                        homeProvider
-                                                            .filteredListingsResponse
-                                                            .results!
-                                                            .length,
-                                                        (index) =>
-                                                            GestureDetector(
+                                                        homeProvider.filteredListingsResponse.results!.length,
+                                                        (index) => GestureDetector(
                                                           onTapUp: (details) {
-                                                            Get.toNamed(
-                                                                "/anuncio",
+                                                            Get.toNamed("/anuncio",
                                                                 parameters: {
-                                                                  "id": homeProvider
-                                                                      .filteredListingsResponse
-                                                                      .results![
-                                                                          index]
-                                                                      .uid!
+                                                                  "id": homeProvider.filteredListingsResponse.results![index].uid!
                                                                 },
-                                                                arguments: homeProvider
-                                                                    .filteredListingsResponse
-                                                                    .results![index]);
+                                                                arguments: homeProvider.filteredListingsResponse.results![index]);
                                                           },
                                                           child: Hero(
-                                                            tag: homeProvider
-                                                                .filteredListingsResponse
-                                                                .results![index]
-                                                                .uid!,
-                                                            child:
-                                                                ListingSmallCard(
-                                                              listing: homeProvider
-                                                                  .filteredListingsResponse
-                                                                  .results![index],
+                                                            tag: homeProvider.filteredListingsResponse.results![index].uid!,
+                                                            child: ListingSmallCard(
+                                                              listing: homeProvider.filteredListingsResponse.results![index],
                                                             ),
                                                           ),
                                                         ),
@@ -303,8 +254,7 @@ class __HomePageContentState extends State<_HomePageContent> {
                                               width: 2.0,
                                               color: Colors.blue.shade100,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            borderRadius: BorderRadius.circular(10.0),
                                           ),
                                           child: const HomeFilters(),
                                         ),
@@ -339,8 +289,7 @@ class __HomePageContentState extends State<_HomePageContent> {
                             Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: const <Widget>[
                                     Flexible(
                                       flex: 7,
@@ -349,9 +298,7 @@ class __HomePageContentState extends State<_HomePageContent> {
                                     Flexible(
                                       flex: 3,
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10.0),
-                                        //TODO: PONER FILTRO QUE CORRESPONDA
+                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
                                         child: HomeFilters(),
                                       ),
                                     ),
@@ -363,8 +310,7 @@ class __HomePageContentState extends State<_HomePageContent> {
                             ? const Flexible(
                                 child: Center(
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 40, horizontal: 18.0),
+                                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 18.0),
                                     child: Text("Ningún resultado obtenido"),
                                   ),
                                 ),
@@ -377,30 +323,17 @@ class __HomePageContentState extends State<_HomePageContent> {
                                   shrinkWrap: true,
                                   minItemWidth: 200,
                                   children: List.generate(
-                                    homeProvider.filteredListingsResponse
-                                        .results!.length,
+                                    homeProvider.filteredListingsResponse.results!.length,
                                     (index) => GestureDetector(
                                       onTapUp: (details) {
                                         Get.toNamed("/anuncio",
-                                            parameters: {
-                                              "id": homeProvider
-                                                  .filteredListingsResponse
-                                                  .results![index]
-                                                  .uid!
-                                            },
-                                            arguments: homeProvider
-                                                .filteredListingsResponse
-                                                .results![index]);
+                                            parameters: {"id": homeProvider.filteredListingsResponse.results![index].uid!},
+                                            arguments: homeProvider.filteredListingsResponse.results![index]);
                                       },
                                       child: Hero(
-                                        tag: homeProvider
-                                            .filteredListingsResponse
-                                            .results![index]
-                                            .uid!,
+                                        tag: homeProvider.filteredListingsResponse.results![index].uid!,
                                         child: ListingSmallCard(
-                                          listing: homeProvider
-                                              .filteredListingsResponse
-                                              .results![index],
+                                          listing: homeProvider.filteredListingsResponse.results![index],
                                         ),
                                       ),
                                     ),

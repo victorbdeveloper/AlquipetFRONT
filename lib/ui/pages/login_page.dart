@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
           "password": p0.password!,
           "phone": p0.additionalSignupData!["phone"]!,
         };
-        print("DATOS: $data");
+        // print("DATOS: $data");
         return authProvider.createUser(data);
       },
       additionalSignupFields: const <UserFormField>[
